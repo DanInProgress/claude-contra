@@ -1,0 +1,56 @@
+LICENSE NOTICE
+
+Welcome!
+Welcome to my vibe coding playground – a space where ideas and code flow freely.
+This repository is a mix of AI-assisted generation, creative tweaks, and curated snippets.
+Since much of the content isn’t my own creation, I am disclaiming my own rights in the works to
+the greatest extent possible. Any code that is mine, I am making as open as possible.
+
+**FOR MY ORIGINAL CONTRIBUTIONS:**
+
+ 1. I hereby waive any and all copyright or other intellectual property rights 
+    the works in this repository so that they may be dedicated to the public domain.
+    In jurisdictions where a full public domain dedication isn’t recognized,
+    you may instead use my contributions under either of the licenses below.
+
+ 2. To the fullest extent permitted by law, the works in this repository are licensed
+    under your choice of the follwing licenses:
+
+----------------------------------------------------------------------
+OPTION A: MIT No Attribution (MIT-0) WITH PATENT GRANT
+----------------------------------------------------------------------
+MIT No Attribution (MIT-0)
+
+Copyright (c) 2025 Dan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so.
+
+Patent Grant:
+The author hereby grants an unconditional, irrevocable, perpetual, worldwide,
+royalty-free license to make, have made, use, sell, offer for sale, and import
+implementations of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+----------------------------------------------------------------------
+OPTION B: CC0 1.0 UNIVERSAL PUBLIC DOMAIN DEDICATION
+----------------------------------------------------------------------
+This work is also available under the terms of the CC0 1.0 Universal Public Domain
+Dedication. A full copy of the license is available in the file "LICENSE.CC0.txt" and
+online at:
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+NOTE ON NON-ORIGINAL CONTENT:
+The majority of this repository comprises code that I did not write. As such the licensing above
+applies only to my original contributions. To the best of my understanding, the remainder is likely
+not copytrightable, but I also will also reiterate my uncertainty of the status of the remainder of
+the work.

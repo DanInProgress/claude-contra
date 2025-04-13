@@ -1,0 +1,40 @@
+{
+  "rules": {
+    "formatOnSave": true,
+    "formatOnType": true,
+    "autoFixOnSave": true,
+    "typescript": {
+      "preferConst": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true
+    },
+    "javascript": {
+      "preferConst": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true
+    },
+    "react": {
+      "hooks": {
+        "rulesOfHooks": "error",
+        "exhaustiveDeps": "warn"
+      }
+    },
+    "imports": {
+      "order": ["builtin", "external", "internal", "parent", "sibling", "index"],
+      "newlinesBetween": "always"
+    },
+    "tailwind": {
+      "sortClassNames": true
+    }
+  },
+  "ignore": [
+    "node_modules",
+    "dist",
+    "build",
+    ".git",
+    "*.min.js",
+    "*.min.css"
+  ]
+} 
