@@ -64,3 +64,6 @@ coverage
 *.key
 *.cert
 *.crt
+
+# Local Netlify folder
+.netlify
