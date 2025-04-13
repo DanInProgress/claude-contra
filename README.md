@@ -1,6 +1,6 @@
 # Claude Contra
 
-A documentation project showcasing creative and unconventional uses of Claude.ai, exploring the boundaries of what's possible with Anthropic's AI assistant.
+A documentation project showcasing creative and unconventional uses of Claude.ai, exploring the boundaries of what's possible with Anthropic's AI assistant. This repository contains a mix of AI-assisted generation, creative tweaks, and curated snippets.
 
 ## 🚀 Tech Stack
 
@@ -41,8 +41,15 @@ The project is organized to document various experiments and projects that push 
 
 ## 🤝 Contributing
 
-This project is a personal documentation space, but suggestions and ideas are welcome!
+This project is a personal documentation space, but suggestions and ideas are welcome! Please note that this repository contains a mix of AI-generated content, creative adaptations, and curated snippets.
 
 ## 📝 License
 
-MIT
+This repository contains a mix of content with different origins. For my original contributions:
+
+1. I waive all copyright and intellectual property rights, dedicating them to the public domain where possible.
+2. Where public domain dedication isn't recognized, you may use my contributions under either:
+   - MIT No Attribution (MIT-0) with Patent Grant, or
+   - CC0 1.0 Universal Public Domain Dedication
+
+For non-original content, the licensing status may vary. Please refer to the full [LICENSE.txt](LICENSE.txt) for complete details.
