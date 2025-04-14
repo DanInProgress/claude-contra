@@ -24,5 +24,6 @@ This directory contains research and reverse engineering documentation for the p
 ## Research Log
 
 ### [YYYY-MM-DD]
+
 - Initial research setup
-- Created documentation structure 
+- Created documentation structure

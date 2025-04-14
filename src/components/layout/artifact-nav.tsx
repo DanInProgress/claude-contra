@@ -3,7 +3,7 @@ import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
-  NavigationMenuLink
+  NavigationMenuLink,
 } from './ui/navigation-menu';
 
 const artifacts = [
@@ -43,11 +43,11 @@ export function ArtifactNav() {
             {Object.entries(artifactGroups).map(([name, versions]) => (
               <NavigationMenuItem key={name} className="flex items-center gap-1">
                 {versions.map(({ path, version }) => (
-                  <NavigationMenuLink 
+                  <NavigationMenuLink
                     key={path}
                     href={path}
                     onClick={handleNavigate(path)}
-                    className="px-4 py-2 rounded-md"
+                    className="rounded-md px-4 py-2"
                     data-active={currentPath === path}
                   >
                     {name}

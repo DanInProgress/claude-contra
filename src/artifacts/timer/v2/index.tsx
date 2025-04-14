@@ -20,7 +20,7 @@ export default function TimerV2() {
       intervalId = setInterval(() => {
         if (timerState.lastStartTime) {
           const elapsedSeconds = Math.floor((Date.now() - timerState.lastStartTime) / 1000);
-          setTimerState(prev => ({ ...prev, time: elapsedSeconds }));
+          setTimerState((prev) => ({ ...prev, time: elapsedSeconds }));
         }
       }, 100);
     } else if (!timerState.isRunning && timerState.time !== 0) {
@@ -33,13 +33,13 @@ export default function TimerV2() {
   }, [timerState.isRunning, timerState.lastStartTime]);
 
   const toggleTimer = () => {
-    setTimerState(prev => {
+    setTimerState((prev) => {
       const isRunning = !prev.isRunning;
       const lastStartTime = isRunning ? Date.now() - prev.time * 1000 : null;
       return {
         ...prev,
         isRunning,
-        lastStartTime: isRunning ? (prev.lastStartTime || Date.now()) : prev.lastStartTime
+        lastStartTime: isRunning ? prev.lastStartTime || Date.now() : prev.lastStartTime,
       };
     });
   };
@@ -59,34 +59,33 @@ export default function TimerV2() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-background p-6 font-primary">
-      <div className="rounded-lg border border-border bg-card p-8 shadow-sm w-full max-w-sm">
-        <h1 className="text-center text-xl font-medium text-foreground mb-4">Timer (v2)</h1>
-        <div className="mb-8 text-center font-mono text-7xl font-medium text-foreground tracking-tight">
+    <div className="bg-background font-primary flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-6">
+      <div className="border-border bg-card w-full max-w-sm rounded-lg border p-8 shadow-sm">
+        <h1 className="text-foreground mb-4 text-center text-xl font-medium">Timer (v2)</h1>
+        <div className="text-foreground mb-8 text-center font-mono text-7xl font-medium tracking-tight">
           {formatTime(timerState.time)}
         </div>
-        <div className="flex gap-4 justify-center">
+        <div className="flex justify-center gap-4">
           <button
             onClick={toggleTimer}
-            className={`inline-flex items-center rounded-md border px-6 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-95 transition-all 
-              ${
-                timerState.isRunning
-                  ? 'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90'
-                  : 'border-transparent bg-primary text-primary-foreground hover:bg-primary/90'
-              }`}
+            className={`focus:ring-ring inline-flex items-center rounded-md border px-6 py-2 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none active:scale-95 ${
+              timerState.isRunning
+                ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90 border-transparent'
+                : 'bg-primary text-primary-foreground hover:bg-primary/90 border-transparent'
+            }`}
           >
             {timerState.isRunning ? 'Stop' : 'Start'}
           </button>
           <button
             onClick={resetTimer}
             disabled={timerState.isRunning || timerState.time === 0}
-            className="inline-flex items-center rounded-md border border-border bg-card px-6 py-2 text-sm font-medium text-muted-foreground shadow-sm hover:bg-secondary hover:text-secondary-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
+            className="border-border bg-card text-muted-foreground hover:bg-secondary hover:text-secondary-foreground focus:ring-ring inline-flex items-center rounded-md border px-6 py-2 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:ring-offset-2 focus:outline-none active:scale-95 disabled:pointer-events-none disabled:opacity-50"
           >
             Reset
           </button>
         </div>
         {timerState.lastStartTime && timerState.isRunning && (
-          <p className="mt-6 text-center text-xs text-muted-foreground">
+          <p className="text-muted-foreground mt-6 text-center text-xs">
             Started at: {new Date(timerState.lastStartTime).toLocaleTimeString()}
           </p>
         )}

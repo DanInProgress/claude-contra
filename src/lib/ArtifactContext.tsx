@@ -1,6 +1,13 @@
 import { createContext, useContext, useReducer, ReactNode, useState } from 'react';
 import { toast } from 'sonner';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
 type State = Record<string, any>;
@@ -28,7 +35,10 @@ const initialConfirmState: ConfirmDialogState = {
 const ArtifactContext = createContext<{
   state: State;
   setState: (artifactId: string, state: any) => void;
-  notify: (message: string, options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }) => void;
+  notify: (
+    message: string,
+    options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }
+  ) => void;
   confirm: (options: Omit<ConfirmDialogState, 'isOpen'>) => void;
 } | null>(null);
 
@@ -45,14 +55,14 @@ function artifactReducer(state: State, action: Action): State {
 }
 
 // Confirmation Dialog Component
-function ConfirmationDialog({ 
-  isOpen, 
-  title, 
-  description, 
-  confirmText, 
-  cancelText, 
-  onConfirm, 
-  onClose 
+function ConfirmationDialog({
+  isOpen,
+  title,
+  description,
+  confirmText,
+  cancelText,
+  onConfirm,
+  onClose,
 }: ConfirmDialogState & { onClose: () => void }) {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -62,8 +72,10 @@ function ConfirmationDialog({
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2 sm:gap-0">
-          <Button variant="outline" onClick={onClose}>{cancelText}</Button>
-          <Button 
+          <Button variant="outline" onClick={onClose}>
+            {cancelText}
+          </Button>
+          <Button
             onClick={() => {
               onConfirm();
               onClose();
@@ -85,7 +97,10 @@ export function ArtifactProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'SET_STATE', artifactId, state: newState });
   };
 
-  const notify = (message: string, options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }) => {
+  const notify = (
+    message: string,
+    options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }
+  ) => {
     switch (options?.type) {
       case 'success':
         toast.success(message, { description: options.description });
@@ -109,7 +124,7 @@ export function ArtifactProvider({ children }: { children: ReactNode }) {
   };
 
   const closeConfirm = () => {
-    setConfirmState(prev => ({ ...prev, isOpen: false }));
+    setConfirmState((prev) => ({ ...prev, isOpen: false }));
   };
 
   return (

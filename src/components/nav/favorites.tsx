@@ -1,10 +1,4 @@
-import {
-  ArrowUpRight,
-  Link,
-  MoreHorizontal,
-  StarOff,
-  Trash2,
-} from "lucide-react"
+import { ArrowUpRight, Link, MoreHorizontal, StarOff, Trash2 } from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -12,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -24,13 +18,9 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
   useSidebar,
-} from "@/components/ui/sidebar"
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { ChevronRight } from "lucide-react"
+} from '@/components/ui/sidebar';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ChevronRight } from 'lucide-react';
 
 // Define the artifact interface
 interface ArtifactVersion {
@@ -62,11 +52,12 @@ export function NavFavorites({
       <SidebarMenu>
         {favorites.map((item) => {
           // Check if this is the currently active artifact
-          const isActive = !!currentArtifact && item.name.toLowerCase().includes(currentArtifact.toLowerCase());
-          
+          const isActive =
+            !!currentArtifact && item.name.toLowerCase().includes(currentArtifact.toLowerCase());
+
           // Check if this artifact has versions
           const hasVersions = !!(item.versions && item.versions.length > 1);
-          
+
           return (
             <Collapsible key={item.name} defaultOpen={isActive && hasVersions}>
               <SidebarMenuItem>
@@ -76,11 +67,11 @@ export function NavFavorites({
                     <span>{item.name}</span>
                   </a>
                 </SidebarMenuButton>
-                
+
                 {/* Only show versions dropdown if multiple versions exist */}
                 {hasVersions && (
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuAction 
+                    <SidebarMenuAction
                       className="bg-sidebar-accent text-sidebar-accent-foreground data-[state=open]:rotate-90"
                       showOnHover={!isActive}
                     >
@@ -88,14 +79,14 @@ export function NavFavorites({
                     </SidebarMenuAction>
                   </CollapsibleTrigger>
                 )}
-                
+
                 {/* Version dropdown */}
                 {hasVersions && (
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       {item.versions?.map((version) => (
                         <SidebarMenuSubItem key={version.version}>
-                          <SidebarMenuSubButton 
+                          <SidebarMenuSubButton
                             asChild
                             isActive={isActive && currentVersion === version.version}
                           >
@@ -115,5 +106,5 @@ export function NavFavorites({
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

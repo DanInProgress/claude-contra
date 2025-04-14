@@ -70,7 +70,7 @@ export default function TodoV1() {
   const toggleTodo = (id: string) => {
     setTodoState({
       ...todoState,
-      items: todoState.items.map(item =>
+      items: todoState.items.map((item) =>
         item.id === id ? { ...item, completed: !item.completed } : item
       ),
     });
@@ -80,15 +80,15 @@ export default function TodoV1() {
   const deleteTodo = (id: string) => {
     setTodoState({
       ...todoState,
-      items: todoState.items.filter(item => item.id !== id),
+      items: todoState.items.filter((item) => item.id !== id),
     });
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-background p-6">
-      <div className="w-full max-w-md rounded-lg border border-border bg-card p-6 shadow-sm">
-        <h1 className="mb-6 text-2xl font-semibold text-foreground">Todo List</h1>
-        
+    <div className="bg-background flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-6">
+      <div className="border-border bg-card w-full max-w-md rounded-lg border p-6 shadow-sm">
+        <h1 className="text-foreground mb-6 text-2xl font-semibold">Todo List</h1>
+
         {/* Input and Add button */}
         <div className="mb-4 flex gap-2">
           <Input
@@ -101,16 +101,16 @@ export default function TodoV1() {
           />
           <Button onClick={addTodo}>Add</Button>
         </div>
-        
+
         {/* Todo list */}
         <div className="space-y-2">
           {todoState.items.length === 0 ? (
-            <p className="text-center text-muted-foreground">No tasks yet. Add one above!</p>
+            <p className="text-muted-foreground text-center">No tasks yet. Add one above!</p>
           ) : (
-            todoState.items.map(item => (
+            todoState.items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between rounded-md border border-border p-3"
+                className="border-border flex items-center justify-between rounded-md border p-3"
               >
                 <div className="flex items-center gap-2">
                   <input
@@ -119,7 +119,9 @@ export default function TodoV1() {
                     onChange={() => toggleTodo(item.id)}
                     className="h-4 w-4 rounded border-gray-300"
                   />
-                  <span className={`${item.completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
+                  <span
+                    className={`${item.completed ? 'text-muted-foreground line-through' : 'text-foreground'}`}
+                  >
                     {item.text}
                   </span>
                 </div>
@@ -127,7 +129,7 @@ export default function TodoV1() {
                   variant="ghost"
                   size="sm"
                   onClick={() => deleteTodo(item.id)}
-                  className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                  className="text-muted-foreground hover:text-destructive h-8 w-8 p-0"
                 >
                   ×
                 </Button>
@@ -135,12 +137,13 @@ export default function TodoV1() {
             ))
           )}
         </div>
-        
+
         {/* Status */}
         {todoState.items.length > 0 && (
-          <div className="mt-4 text-sm text-muted-foreground">
+          <div className="text-muted-foreground mt-4 text-sm">
             <p>
-              {todoState.items.filter(item => item.completed).length} of {todoState.items.length} tasks completed
+              {todoState.items.filter((item) => item.completed).length} of {todoState.items.length}{' '}
+              tasks completed
             </p>
           </div>
         )}
@@ -169,4 +172,4 @@ In `main.tsx`, this component will be automatically discovered and imported:
 const versionedArtifacts = import.meta.glob('./artifacts/**/index.tsx', { eager: false });
 ```
 
-And then displayed in the artifacts list and routed to when selected. 
+And then displayed in the artifacts list and routed to when selected.

@@ -5,21 +5,26 @@
 Welcome to the Anthropic Design System! As a new front-end developer, this section will help you quickly get started implementing our design language across our products.
 
 ### Setup Checklist
+
 1. **Install Dependencies**
+
    ```bash
    npm install @anthropic/design-system
    ```
 
 2. **Configure Tailwind**
+
    - Import our preset in your `tailwind.config.js`:
+
    ```javascript
    module.exports = {
      presets: [require('@anthropic/design-system/tailwind')],
      // Your project-specific configurations...
-   }
+   };
    ```
 
 3. **Import Theme CSS**
+
    ```javascript
    import '@anthropic/design-system/themes.css';
    ```
@@ -27,14 +32,11 @@ Welcome to the Anthropic Design System! As a new front-end developer, this secti
 4. **Apply Theme Context**
    ```jsx
    // Root component
-   const App = () => (
-     <div data-theme="claude">
-       {/* Your application content */}
-     </div>
-   );
+   const App = () => <div data-theme="claude">{/* Your application content */}</div>;
    ```
 
 ### Key Resources
+
 - **Component Library**: [Internal Storybook](https://design-system.anthropic.com)
 - **Design Files**: [Figma Library](https://figma.com/anthropic/design-system)
 - **Code Repository**: [GitHub Repository](https://github.com/anthropic/design-system)
@@ -45,29 +47,35 @@ Welcome to the Anthropic Design System! As a new front-end developer, this secti
 The Anthropic Design System is a comprehensive guide that ensures a consistent look and feel across all Anthropic products, including Claude.ai, our documentation, blogs, and API console. This guide serves as the single source of truth for our design language, helping new and existing front-end developers understand and implement our visual identity consistently.
 
 Our design system embodies our core brand values:
+
 - **Clarity**: Making complex AI interactions intuitive and accessible
 - **Innovation**: Pushing boundaries while maintaining usability
 - **Trust**: Creating reliable, professional experiences
 - **Humanity**: Offering a playful yet professional tone
 
 **[Product Comparison Visual]**
-*A side-by-side comparison showing the consistent design language across Claude.ai interface, documentation site, and API console - all sharing the same typography, color scheme, and component styles with a clean, light aesthetic and the distinctive sunburst icon appearing throughout.*
+_A side-by-side comparison showing the consistent design language across Claude.ai interface, documentation site, and API console - all sharing the same typography, color scheme, and component styles with a clean, light aesthetic and the distinctive sunburst icon appearing throughout._
 
 ## Design Principles
 
 ### 1. User-Centered Design
+
 Place the user's needs at the center of every design decision. Components should be intuitive, accessible, and reduce cognitive load.
 
 ### 2. Consistency With Flexibility
+
 Maintain consistent patterns across products while allowing for contextual adaptation.
 
 ### 3. Progressive Disclosure
+
 Present information and options at the appropriate time to avoid overwhelming users.
 
 ### 4. Responsive Feedback
+
 Create meaningful interactions that provide immediate, clear feedback.
 
 ### 5. Emotional Design
+
 Design components that evoke positive emotional responses and reinforce brand values.
 
 ## Brand Identity
@@ -77,22 +85,29 @@ Design components that evoke positive emotional responses and reinforce brand va
 Anthropic's visual identity is built around a few key elements that should be consistently applied across all products and platforms:
 
 #### Claude Sunburst Icon
+
 The sunburst icon represents Claude and appears in various contexts:
+
 - Used as a greeting element ("⊹ Back at it, Dan")
 - Appears in the Claude logo and profile imagery
 - Functions as a visual anchor in product interfaces
 
 #### Profile Silhouette
+
 The silhouette of a human head with the sunburst inside represents Claude's intelligence and is a key brand identifier seen on the marketing site.
 
 #### Colors
+
 Our primary brand color is a warm terracotta/coral (#E07A5F or similar) that appears in:
+
 - The Claude icon background
 - Key accent elements across products
 - Call-to-action highlights
 
 #### Brand Voice
+
 Our interfaces employ a warm, personable tone with greetings like:
+
 - "Back at it, Dan"
 - "Good afternoon, Dan"
 - Text that feels helpful and conversational without being overly casual
@@ -100,6 +115,7 @@ Our interfaces employ a warm, personable tone with greetings like:
 ### Typography
 
 #### Primary Fonts
+
 - **Styrene**: Used for UI elements, navigation, and general content
   - Weights: Regular, Medium
   - Sizes: 12px (xs), 14px (sm), 16px (base), 18px (lg)
@@ -112,6 +128,7 @@ Our interfaces employ a warm, personable tone with greetings like:
   - Used for primary marketing messages and major section headers
 
 #### Typography Guidelines
+
 - Maintain a clear hierarchy with consistent heading levels
 - Use appropriate line height (generally 1.5 for body text)
 - Ensure adequate contrast for readability
@@ -119,6 +136,7 @@ Our interfaces employ a warm, personable tone with greetings like:
 - Use sentence case for most UI text (not title case)
 
 #### Typography Implementation
+
 From our Tailwind configuration, we define our font families as:
 
 ```javascript
@@ -144,6 +162,7 @@ fontFamily: {
 ### Color Palette
 
 #### Brand Colors
+
 - **Terracotta/Coral**: `#E07A5F` - Primary brand color used for the Claude icon background and key accent elements
 - **Cream/Off-white**: `#F8F7F4` - Primary background color seen across marketing and documentation sites
 - **Dark Tone**: `#2D2A26` - Used for primary text and the Anthropic logo
@@ -152,19 +171,20 @@ fontFamily: {
 
 Here are specific examples showing correct color usage across different components:
 
-| UI Element | Correct Color Usage | Example Class |
-|------------|---------------------|--------------|
-| Primary Button | Terracotta/Coral (`#E07A5F`) | `bg-claude-main-000 text-white` |
-| Secondary Button | Transparent with Border | `bg-transparent border border-claude-border-300 text-claude-text-300` |
-| Interactive Elements | Primary Blue (`#3B82F6`) | `text-claude-secondary-000` |
-| Navigation Link (default) | Secondary Text (`#4B5563`) | `text-claude-text-300` |
-| Navigation Link (active) | Primary Text (`#2D2D2D`) | `text-claude-text-100` |
-| Error Message | Error Red (`#EF4444`) | `text-claude-danger-100` |
-| Background (main) | White (`#FFFFFF`) | `bg-claude-bg-000` |
-| Background (sidebar) | Cream (`#F2F0EB`) | `bg-claude-bg-100` |
-| Dividers/Borders | Border Gray (`#E5E7EB`) | `border-claude-border-300` |
+| UI Element                | Correct Color Usage          | Example Class                                                         |
+| ------------------------- | ---------------------------- | --------------------------------------------------------------------- |
+| Primary Button            | Terracotta/Coral (`#E07A5F`) | `bg-claude-main-000 text-white`                                       |
+| Secondary Button          | Transparent with Border      | `bg-transparent border border-claude-border-300 text-claude-text-300` |
+| Interactive Elements      | Primary Blue (`#3B82F6`)     | `text-claude-secondary-000`                                           |
+| Navigation Link (default) | Secondary Text (`#4B5563`)   | `text-claude-text-300`                                                |
+| Navigation Link (active)  | Primary Text (`#2D2D2D`)     | `text-claude-text-100`                                                |
+| Error Message             | Error Red (`#EF4444`)        | `text-claude-danger-100`                                              |
+| Background (main)         | White (`#FFFFFF`)            | `bg-claude-bg-000`                                                    |
+| Background (sidebar)      | Cream (`#F2F0EB`)            | `bg-claude-bg-100`                                                    |
+| Dividers/Borders          | Border Gray (`#E5E7EB`)      | `border-claude-border-300`                                            |
 
 **✅ Do:**
+
 ```jsx
 // Correct color usage for brand-primary button
 <button className="bg-claude-main-000 hover:bg-claude-main-200 text-white rounded-md px-4 py-2">
@@ -178,36 +198,42 @@ Here are specific examples showing correct color usage across different componen
 ```
 
 **❌ Don't:**
+
 ```jsx
 // Incorrect with hardcoded colors
-<button className="bg-[#E07A5F] hover:bg-[#F4A261] text-white rounded-md px-4 py-2">
+<button className="rounded-md bg-[#E07A5F] px-4 py-2 text-white hover:bg-[#F4A261]">
   Primary Action
 </button>
 ```
 
 #### Primary UI Colors
+
 - **Primary Blue**: `#3B82F6` (`accent-main-000` in Tailwind) - Used for primary actions, links, and emphasis
 - **Secondary Blue**: `#60A5FA` (`accent-main-200` in Tailwind) - Used for hover states and secondary elements
 - **Accent Blue**: `#00A8E8` - Used for certain CTAs like the send button
 
 #### Neutral Colors
+
 - **Background**: `#F2F0EB` (`bg-sidebar` in Tailwind) - Main surface color for the sidebar and secondary panels
 - **White**: `#FFFFFF` (`bg-white` in Tailwind) - Primary background for content areas
 - **Light Gray**: `#F9F9F9` (`bg-100` in Tailwind) - Secondary background
 - **Border Gray**: `#E5E7EB` (`border-300` in Tailwind) - Used for subtle separators
 
 #### Text Colors
+
 - **Primary Text**: `#2D2D2D` (`text-200` in Tailwind) - Primary text color
 - **Secondary Text**: `#4B5563` (`text-300` in Tailwind) - Secondary, less emphasized text
 - **Tertiary Text**: `#6B7280` (`text-gray-500` in Tailwind) - For supporting text elements
 
 #### Semantic Colors
+
 - **Success**: `#10B981` - Positive actions and confirmation
 - **Warning**: `#F59E0B` - Cautionary elements
 - **Error**: `#EF4444` - Error states and destructive actions
 - **Info**: `#3B82F6` - Informational elements
 
 #### Color Application Guidelines
+
 - Use the terracotta/coral color sparingly for maximum impact
 - Maintain the clean, light aesthetic with generous whitespace
 - Apply text colors consistently based on hierarchy
@@ -215,7 +241,9 @@ Here are specific examples showing correct color usage across different componen
 - Use the primary blue for interactive elements to provide visual consistency with the chat interface
 
 #### CSS Variables System
+
 We use HSL color variables for flexibility:
+
 ```css
 :root {
   --bg-000: 0 0% 100%; /* White */
@@ -223,14 +251,14 @@ We use HSL color variables for flexibility:
   --bg-200: 220 13% 91%; /* Lighter Gray */
   --bg-300: 216 12% 84%; /* Light Gray for hover states */
   --bg-400: 217 10% 78%; /* Medium Gray for active states */
-  
+
   --text-100: 0 0% 100%; /* White text */
   --text-200: 220 9% 15%; /* Near-black for primary text */
   --text-300: 220 9% 35%; /* Dark gray for secondary text */
-  
+
   --accent-main-000: 210 100% 45%; /* Primary blue */
   --accent-main-200: 210 100% 40%; /* Darker blue for hover states */
-  
+
   --always-black: 0 0% 0%; /* Pure black, used sparingly */
 }
 ```
@@ -240,6 +268,7 @@ We use HSL color variables for flexibility:
 Our products support two distinct themes:
 
 1. **Claude Theme** - Used for the main Claude.ai consumer product
+
    - Light mode has a warm, cream background with terracotta/coral accent colors
    - Dark mode has deep gray backgrounds with adjusted accent colors for visibility
 
@@ -250,6 +279,7 @@ Our products support two distinct themes:
 Both themes are implemented using CSS variables with a consistent structure, making it easy to apply either theme to any component.
 
 **Light Mode Claude Theme (Excerpt):**
+
 ```css
 [data-theme='claude'],
 [data-theme='claude'][data-mode='light'] {
@@ -262,6 +292,7 @@ Both themes are implemented using CSS variables with a consistent structure, mak
 ```
 
 **Dark Mode Claude Theme (Excerpt):**
+
 ```css
 [data-theme='claude'][data-mode='dark'] {
   --accent-brand: 15 63.1% 59.6%;
@@ -273,6 +304,7 @@ Both themes are implemented using CSS variables with a consistent structure, mak
 ```
 
 **Console Theme (Excerpt):**
+
 ```css
 [data-theme='console'],
 [data-theme='console'][data-mode='dark'] {
@@ -308,7 +340,7 @@ colors: {
     },
     // Additional color groups...
   },
-  
+
   // Console Theme Colors
   console: {
     // Similar structure to claude theme...
@@ -317,6 +349,7 @@ colors: {
 ```
 
 Usage examples:
+
 - `bg-claude-bg-100` - Light gray background in Claude theme
 - `text-claude-text-300` - Secondary text color in Claude theme
 - `border-console-border-200` - Border color in Console theme
@@ -336,11 +369,13 @@ We use a consistent spacing system based on a 4px grid:
 - **3xl**: 64px
 
 In Tailwind classes, these are often expressed as:
+
 - `p-2` = 8px padding
 - `m-4` = 16px margin
 - `gap-3` = 12px gap
 
 Our Tailwind config extends the default spacing with additional values:
+
 ```javascript
 spacing: {
   "3.5": "0.875rem",
@@ -368,6 +403,7 @@ space: {
 - **sidebar**: `inset -4px 0px 6px -4px hsla(0, 0%, 0%, 0.04)`
 
 Our Tailwind config extends shadows with additional options:
+
 ```javascript
 shadow: {
   diffused: "0 4px 24px var(--tw-shadow-color)",
@@ -390,6 +426,7 @@ We use carefully crafted animations to enhance user experience without being dis
 - **Hover Transitions**: Smooth color changes with `transition-colors`
 
 Our Tailwind config defines several keyframes and animations:
+
 ```javascript
 keyframes: {
   shimmertext: {
@@ -414,7 +451,7 @@ animation: {
   fade: "fade 125ms ease-out reverse forwards",
   pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
   spin: "spin 1s linear infinite",
-  
+
   // Complex animations with specific timing and easing
   "fade_125ms_ease-out_reverse_forwards":
     "fade 125ms ease-out reverse forwards",
@@ -429,16 +466,16 @@ animation: {
 
 When building interfaces, use this guide to select the appropriate component:
 
-| If you need to... | Use this component | Not this |
-|-------------------|-------------------|----------|
-| Create a primary action | `Button` with `variant="primary"` | Custom styled divs or links |
-| Create a secondary action | `Button` with `variant="secondary"` | Inconsistently styled buttons |
-| Show a list of options | `Dropdown` or `Menu` | Custom positioned absolute divs |
-| Display form fields | `Input`, `Select`, `Checkbox`, etc. | Native HTML elements without styling |
-| Show tabbed content | `Tabs` component | Custom tab implementations |
-| Display a modal | `Dialog` component | Custom positioned overlays |
-| Show a notification | `Toast` component | Custom alert implementations |
-| Create a page layout | `Layout` component | Direct use of flex/grid without consistency |
+| If you need to...         | Use this component                  | Not this                                    |
+| ------------------------- | ----------------------------------- | ------------------------------------------- |
+| Create a primary action   | `Button` with `variant="primary"`   | Custom styled divs or links                 |
+| Create a secondary action | `Button` with `variant="secondary"` | Inconsistently styled buttons               |
+| Show a list of options    | `Dropdown` or `Menu`                | Custom positioned absolute divs             |
+| Display form fields       | `Input`, `Select`, `Checkbox`, etc. | Native HTML elements without styling        |
+| Show tabbed content       | `Tabs` component                    | Custom tab implementations                  |
+| Display a modal           | `Dialog` component                  | Custom positioned overlays                  |
+| Show a notification       | `Toast` component                   | Custom alert implementations                |
+| Create a page layout      | `Layout` component                  | Direct use of flex/grid without consistency |
 
 ### Component Decision Tree
 
@@ -452,7 +489,7 @@ User interaction needed?
     ├── Short text content → Text component with appropriate variant
     ├── Structured content → Card component
     ├── Tabular data → Table component
-    ├── Visual data → Chart component 
+    ├── Visual data → Chart component
     └── Status information → Badge or Tag component
 ```
 
@@ -461,16 +498,18 @@ User interaction needed?
 Below are examples of key components as they appear in our products, with implementation details.
 
 **[Claude.ai Chat Interface Visual]**
-*Description: The Claude.ai chat interface showing the main conversation screen with:
+\*Description: The Claude.ai chat interface showing the main conversation screen with:
+
 - A light off-white background
 - The sunburst icon next to "Back at it, Dan" greeting at the top
 - The input area at the bottom with a plus button, text field, and coral send button
 - A model selector showing "Claude 3.7 Sonnet"
 - A quota usage meter showing a blue progress bar at 2.5%
-- The interface uses Styrene font throughout and maintains generous whitespace*
+- The interface uses Styrene font throughout and maintains generous whitespace\*
 
 **[Documentation/Marketing Site Visual]**
-*Description: The Anthropic documentation site featuring:
+\*Description: The Anthropic documentation site featuring:
+
 - The same cream/off-white background (#F8F7F4)
 - "Build with Claude" headline in large Tiempos font
 - Clearly defined content sections with ample spacing
@@ -478,11 +517,12 @@ Below are examples of key components as they appear in our products, with implem
 - The Anthropic logo in the top left
 - A search box with subtle border and placeholder text
 - A grid of feature cards with icons and concise descriptions
-- All text using the Styrene font family except for headlines*
+- All text using the Styrene font family except for headlines\*
 
 ### Navigation Elements
 
 #### Sidebar
+
 The sidebar is the primary navigation hub that provides access to different sections of the application.
 
 - **Visual Characteristics**:
@@ -494,7 +534,8 @@ The sidebar is the primary navigation hub that provides access to different sect
   - Includes a "New chat" button at the top
 
 #### Navigation Links
-- **Default State**: 
+
+- **Default State**:
   - Text color: `#4B5563` (`text-text-300` in Tailwind)
   - Padding: `0.75rem 1rem` (`py-3 px-4` in Tailwind)
   - Border-radius: `0.5rem` (`rounded-lg` in Tailwind)
@@ -509,6 +550,7 @@ The sidebar is the primary navigation hub that provides access to different sect
 ### Buttons
 
 #### Primary Button
+
 Used for primary actions like "New Chat" or "Submit".
 
 - **Default State**:
@@ -525,6 +567,7 @@ Used for primary actions like "New Chat" or "Submit".
   - Pointer-events: `none`
 
 #### Secondary Button
+
 Used for secondary actions.
 
 - **Default State**:
@@ -537,6 +580,7 @@ Used for secondary actions.
   - Transform: `scale(0.95)`
 
 #### Icon Button
+
 Used for actions like send, settings, etc.
 
 - **Default State**:
@@ -550,6 +594,7 @@ Used for actions like send, settings, etc.
 ### Input Elements
 
 #### ChatInput
+
 The primary text input area for messaging Claude.
 
 - **Visual Characteristics**:
@@ -561,6 +606,7 @@ The primary text input area for messaging Claude.
   - Box-shadow: `0 1px 3px rgba(0, 0, 0, 0.1)`
 
 #### Form Inputs
+
 Used for settings and other form elements.
 
 - **Default State**:
@@ -574,9 +620,11 @@ Used for settings and other form elements.
 ### Message Display
 
 #### ChatMessage
+
 Displays individual messages in the conversation.
 
 - **User Message**:
+
   - Background: Light blue/gray
   - Alignment: Right
   - Border-radius: 12px
@@ -589,7 +637,6 @@ Displays individual messages in the conversation.
   - Border-radius: 12px
   - Padding: 12px 16px
   - Max-width: 80%
-  
 - **Timestamp**:
   - Font size: 12px
   - Color: `#6B7280`
@@ -598,9 +645,11 @@ Displays individual messages in the conversation.
 ### Dropdown Menus
 
 #### ProjectMenuDropdown
+
 Context menu for project-specific actions.
 
 - **Container**:
+
   - Position: Absolute
   - Background: White
   - Border-radius: 8px
@@ -611,7 +660,6 @@ Context menu for project-specific actions.
   - Display: Flex, align-items: center
   - Padding: 8px 12px
   - Color: `#6B7280` (text-300)
-  
 - **Hover State**:
   - Background: `#F3F4F6` (bg-300)
   - Color: `#111827` (text-100)
@@ -638,12 +686,12 @@ screens: {
   lg: "1024px",
   xl: "1280px",
   "2xl": "1536px",
-  
+
   // Custom min-width queries
   "min-[350px]": { min: "350px" },
   "min-[500px]": { min: "500px" },
   "min-[1000px]": { min: "1000px" },
-  
+
   // Custom max-width queries
   "max-sm": { max: "640px" },
 },
@@ -654,18 +702,21 @@ screens: {
 From the screenshots, we can observe several consistent patterns for responsive design:
 
 #### Small Screens (< 640px)
+
 - Full-width containers with reduced padding (`px-4 sm:px-6`)
 - Stacked layouts instead of side-by-side elements
 - Simplified navigation with critical paths only
 - Tailwind classes: `w-full sm:w-auto`, `flex-col sm:flex-row`
 
 #### Medium Screens (640px - 1024px)
+
 - Condensed sidebar with icons only or hidden behind hamburger menu
 - Centered content with constrained maximum widths
 - Larger touch targets for form elements
 - Tailwind classes: `hidden md:block`, `md:max-w-3xl`, `md:mx-auto`
 
 #### Large Screens (> 1024px)
+
 - Multi-column layouts with sidebar visible
 - Expanded horizontal spacing between elements
 - Content comfortably fits without horizontal scrolling
@@ -674,12 +725,14 @@ From the screenshots, we can observe several consistent patterns for responsive 
 ### Component-Specific Adaptations
 
 #### Chat Interface
+
 - On mobile, input area takes full width with reduced padding
 - Message bubbles extend closer to edges on mobile
 - Model selector may simplify or collapse on smaller screens
 - Tailwind implementation: `w-full lg:w-4/5 max-w-full lg:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8`
 
 #### Documentation Pages
+
 - On mobile, single column layout with stacked navigation
 - On larger screens, sidebar navigation remains visible
 - Search expands to full width on mobile
@@ -697,6 +750,7 @@ From the screenshots, we can observe several consistent patterns for responsive 
 ### Focus States
 
 All interactive elements must have a visible focus state for keyboard navigation:
+
 - Focus ring color: `#3B82F6`
 - Focus ring width: 2-3px
 - Focus ring offset: 2px
@@ -704,6 +758,7 @@ All interactive elements must have a visible focus state for keyboard navigation
 ### Semantic HTML
 
 Use appropriate semantic HTML elements:
+
 - `<button>` for clickable actions
 - `<a>` for navigation links
 - Proper heading hierarchy (`<h1>` through `<h6>`)
@@ -736,16 +791,17 @@ Anthropic's products maintain a consistent voice across all interfaces that bala
 
 ### Examples from Our Products
 
-| Context | Example | Why It Works |
-|---------|---------|-------------|
-| Chat greeting | "Back at it!" | Short, friendly, encourages continuation |
-| Button | "Let's create" | Direct, simple, collaborative |
-| Section heading | "⊹ Creative Space" | Uses sunburst icon, clear purpose |
-| Feature description | "Count on me. A simple yet satisfying way to keep track of numbers that matter to you." | Subtle wordplay, user-benefit focused |
+| Context             | Example                                                                                 | Why It Works                             |
+| ------------------- | --------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Chat greeting       | "Back at it!"                                                                           | Short, friendly, encourages continuation |
+| Button              | "Let's create"                                                                          | Direct, simple, collaborative            |
+| Section heading     | "⊹ Creative Space"                                                                      | Uses sunburst icon, clear purpose        |
+| Feature description | "Count on me. A simple yet satisfying way to keep track of numbers that matter to you." | Subtle wordplay, user-benefit focused    |
 
 ### Do's and Don'ts
 
 #### Do's
+
 - Start with a simple, direct greeting
 - Use the sunburst icon (⊹) at the beginning of sections
 - Keep sentences short and conversational
@@ -756,6 +812,7 @@ Anthropic's products maintain a consistent voice across all interfaces that bala
 - Vary greetings based on context
 
 #### Don'ts
+
 - Use corporate jargon or buzzwords
 - Write long, complex sentences
 - Sound overly technical or robotic
@@ -798,12 +855,7 @@ We use a combination of Tailwind utility classes and custom semantic classes:
 
 ```jsx
 // Example of good class organization
-<button 
-  className="inline-flex items-center justify-center rounded-md px-4 py-2 
-             font-styrene text-sm font-medium
-             bg-accent-main-000 text-white 
-             hover:bg-accent-main-200 active:scale-95"
->
+<button className="font-styrene bg-accent-main-000 hover:bg-accent-main-200 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white active:scale-95">
   Get Started
 </button>
 ```
@@ -818,12 +870,12 @@ We use a combination of Tailwind utility classes and custom semantic classes:
 ```jsx
 import { Icon } from 'lucide-react';
 
-<Icon 
-  size={20} 
-  className="text-text-300" 
-  aria-hidden={hasLabel} 
-  aria-label={!hasLabel ? 'Descriptive label' : undefined} 
-/>
+<Icon
+  size={20}
+  className="text-text-300"
+  aria-hidden={hasLabel}
+  aria-label={!hasLabel ? 'Descriptive label' : undefined}
+/>;
 ```
 
 ### JavaScript Component Structure
@@ -851,9 +903,9 @@ export const MyComponent: React.FC<MyComponentProps> = ({
   variant = 'primary',
 }) => {
   // Component logic here
-  
+
   return (
-    <Button 
+    <Button
       onClick={onClick}
       variant={variant}
     >
@@ -885,11 +937,11 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 export const ProjectMenu = () => (
   <DropdownMenu.Root>
-    <DropdownMenu.Trigger className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-transparent text-text-300 hover:bg-bg-300 hover:text-text-100">
+    <DropdownMenu.Trigger className="text-text-300 hover:bg-bg-300 hover:text-text-100 inline-flex h-8 w-8 items-center justify-center rounded-md bg-transparent">
       <DotsHorizontalIcon />
     </DropdownMenu.Trigger>
     <DropdownMenu.Content className="z-10 rounded-md bg-white p-1 shadow-md">
-      <DropdownMenu.Item className="flex items-center px-3 py-2 text-sm text-text-300 hover:bg-bg-300 hover:text-text-100 rounded-md">
+      <DropdownMenu.Item className="text-text-300 hover:bg-bg-300 hover:text-text-100 flex items-center rounded-md px-3 py-2 text-sm">
         Edit Project
       </DropdownMenu.Item>
       {/* Additional items */}
@@ -923,6 +975,7 @@ When using chart libraries, maps, or other visualization tools:
 Our custom Tailwind configuration extends the default with our brand colors and design tokens. The full configuration is available in `claude-ai.tailwind.config.js`, which is the source of truth for our design implementation.
 
 Key sections include:
+
 - Color definitions using HSL variables
 - Typography system with custom fonts
 - Spacing and sizing system
@@ -971,10 +1024,12 @@ When building new features or components, follow this workflow to ensure design 
 We welcome contributions to improve our design system! Here's how:
 
 1. **Proposing Changes**
+
    - For minor changes: Open a PR with your proposed changes
    - For larger changes: Start a discussion in the #design-system Slack channel
 
 2. **Component Contribution Requirements**
+
    - Clear documentation with usage examples
    - Storybook stories demonstrating various states
    - Accessibility compliance
@@ -993,10 +1048,12 @@ We welcome contributions to improve our design system! Here's how:
 When implementing design system components, ensure you test for:
 
 1. **Theme Compatibility**
+
    - Test in both Claude and Console themes
    - Verify light and dark mode appearances
 
 2. **Responsive Behavior**
+
    - Test at all standard breakpoints
    - Verify touch target sizes on mobile
 
@@ -1058,16 +1115,19 @@ Each Anthropic product has unique considerations while still adhering to our ove
 The Claude.ai consumer product has the following specific guidelines:
 
 1. **Conversation UI**
+
    - Messages should use the `ChatMessage` component with appropriate user/assistant styling
    - Always include the sunburst icon (⊹) before Claude's greeting messages
    - Use the Claude theme (light or dark based on user preference)
 
 2. **Input Areas**
+
    - Always use the `ChatInput` component for message composition
    - Include appropriate placeholder text: "Message Claude..." or similar
    - Always show the coral send button
 
 3. **Navigation**
+
    - Sidebar should use the cream background color (`#F2F0EB`)
    - Navigation items should use standard hover/active states
 
@@ -1076,14 +1136,14 @@ The Claude.ai consumer product has the following specific guidelines:
    // Claude chat interface
    const ChatInterface = () => (
      <div className="flex h-screen" data-theme="claude">
-       <Sidebar className="w-[18rem] bg-claude-bg-100 border-r border-claude-border-300">
+       <Sidebar className="bg-claude-bg-100 border-claude-border-300 w-[18rem] border-r">
          {/* Sidebar content */}
        </Sidebar>
-       <main className="flex flex-col flex-1">
+       <main className="flex flex-1 flex-col">
          <ChatHeader />
          <ChatMessages className="flex-1 overflow-y-auto p-4" />
-         <ChatInput 
-           className="border-t border-claude-border-300 p-4"
+         <ChatInput
+           className="border-claude-border-300 border-t p-4"
            placeholder="Message Claude..."
          />
        </main>
@@ -1096,16 +1156,19 @@ The Claude.ai consumer product has the following specific guidelines:
 For documentation and blog pages:
 
 1. **Typography**
+
    - Use Copernicus for major headings (H1)
    - Use Tiempos for subheadings (H2, H3)
    - Use Styrene for body text
 
 2. **Layout**
+
    - Maintain generous whitespace (min 16px, preferably 24px+ between sections)
    - Use a maximum content width of 720px for optimal readability
    - Include a visible sidebar with section navigation
 
 3. **Code Blocks**
+
    - Use the Claude syntax highlighting theme
    - Apply proper language tags
    - Include copy button in upper right corner
@@ -1119,15 +1182,18 @@ For documentation and blog pages:
 The developer console follows these specific guidelines:
 
 1. **Theme Application**
+
    - Always use the Console theme (`data-theme="console"`)
    - Console theme is primarily dark, with a professional, focused aesthetic
 
 2. **Layout**
+
    - Use a fixed header with main navigation
    - Implement a collapsible sidebar for secondary navigation
    - Use card-based layouts for API key management and usage metrics
 
 3. **Form Elements**
+
    - Use consistent styling for all input fields
    - Include clear validation messages
    - Provide helpful tooltips for technical fields
@@ -1137,13 +1203,11 @@ The developer console follows these specific guidelines:
    // Console interface
    const ConsoleInterface = () => (
      <div className="min-h-screen" data-theme="console">
-       <Header className="border-b border-console-border-300 bg-console-bg-100" />
+       <Header className="border-console-border-300 bg-console-bg-100 border-b" />
        <div className="flex">
-         <Sidebar className="w-64 border-r border-console-border-300" />
+         <Sidebar className="border-console-border-300 w-64 border-r" />
          <main className="flex-1 p-6">
-           <Card className="bg-console-bg-200 p-4 rounded-lg">
-             {/* Card content */}
-           </Card>
+           <Card className="bg-console-bg-200 rounded-lg p-4">{/* Card content */}</Card>
          </main>
        </div>
      </div>
@@ -1161,39 +1225,39 @@ Here are some common UI patterns and how to implement them correctly:
 const ExampleForm = () => (
   <form className="space-y-6">
     <div>
-      <label 
-        htmlFor="name" 
-        className="block font-styrene text-sm font-medium text-claude-text-200 mb-2"
+      <label
+        htmlFor="name"
+        className="font-styrene text-claude-text-200 mb-2 block text-sm font-medium"
       >
         Name
       </label>
       <input
         id="name"
         type="text"
-        className="w-full px-3 py-2 border border-claude-border-300 rounded-lg focus:ring-2 focus:ring-claude-secondary-000 focus:border-claude-secondary-000 font-styrene text-claude-text-100"
+        className="border-claude-border-300 focus:ring-claude-secondary-000 focus:border-claude-secondary-000 font-styrene text-claude-text-100 w-full rounded-lg border px-3 py-2 focus:ring-2"
         placeholder="Enter your name"
       />
     </div>
-    
+
     <div>
-      <label 
-        htmlFor="email" 
-        className="block font-styrene text-sm font-medium text-claude-text-200 mb-2"
+      <label
+        htmlFor="email"
+        className="font-styrene text-claude-text-200 mb-2 block text-sm font-medium"
       >
         Email
       </label>
       <input
         id="email"
         type="email"
-        className="w-full px-3 py-2 border border-claude-border-300 rounded-lg focus:ring-2 focus:ring-claude-secondary-000 focus:border-claude-secondary-000 font-styrene text-claude-text-100"
+        className="border-claude-border-300 focus:ring-claude-secondary-000 focus:border-claude-secondary-000 font-styrene text-claude-text-100 w-full rounded-lg border px-3 py-2 focus:ring-2"
         placeholder="you@example.com"
       />
     </div>
-    
+
     <div>
-      <Button 
-        variant="primary" 
-        className="bg-claude-main-000 hover:bg-claude-main-200 active:scale-95 text-white font-styrene"
+      <Button
+        variant="primary"
+        className="bg-claude-main-000 hover:bg-claude-main-200 font-styrene text-white active:scale-95"
       >
         Submit
       </Button>
@@ -1207,13 +1271,11 @@ const ExampleForm = () => (
 ```jsx
 // Correct card implementation
 const ExampleCard = ({ title, children }) => (
-  <div className="bg-claude-bg-000 rounded-lg border border-claude-border-300 overflow-hidden shadow-sm">
-    <div className="px-4 py-3 border-b border-claude-border-300">
-      <h3 className="font-styrene font-medium text-claude-text-100">{title}</h3>
+  <div className="bg-claude-bg-000 border-claude-border-300 overflow-hidden rounded-lg border shadow-sm">
+    <div className="border-claude-border-300 border-b px-4 py-3">
+      <h3 className="font-styrene text-claude-text-100 font-medium">{title}</h3>
     </div>
-    <div className="p-4">
-      {children}
-    </div>
+    <div className="p-4">{children}</div>
   </div>
 );
 ```
@@ -1223,33 +1285,33 @@ const ExampleCard = ({ title, children }) => (
 ```jsx
 // Correct navigation implementation
 const ExampleNavBar = () => (
-  <nav className="bg-claude-bg-100 border-b border-claude-border-300">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between h-16">
+  <nav className="bg-claude-bg-100 border-claude-border-300 border-b">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="flex h-16 justify-between">
         <div className="flex items-center">
           <Logo className="h-8 w-8" />
           <div className="hidden md:ml-6 md:flex md:space-x-8">
-            <NavLink 
-              href="/dashboard" 
-              className="font-styrene text-sm text-claude-text-300 hover:text-claude-text-100 px-3 py-2 rounded-lg hover:bg-claude-bg-300"
+            <NavLink
+              href="/dashboard"
+              className="font-styrene text-claude-text-300 hover:text-claude-text-100 hover:bg-claude-bg-300 rounded-lg px-3 py-2 text-sm"
             >
               Dashboard
             </NavLink>
-            <NavLink 
-              href="/projects" 
-              className="font-styrene text-sm text-claude-text-300 hover:text-claude-text-100 px-3 py-2 rounded-lg hover:bg-claude-bg-300"
+            <NavLink
+              href="/projects"
+              className="font-styrene text-claude-text-300 hover:text-claude-text-100 hover:bg-claude-bg-300 rounded-lg px-3 py-2 text-sm"
             >
               Projects
             </NavLink>
-            <NavLink 
-              href="/settings" 
-              className="font-styrene text-sm text-claude-text-300 hover:text-claude-text-100 px-3 py-2 rounded-lg hover:bg-claude-bg-300"
+            <NavLink
+              href="/settings"
+              className="font-styrene text-claude-text-300 hover:text-claude-text-100 hover:bg-claude-bg-300 rounded-lg px-3 py-2 text-sm"
             >
               Settings
             </NavLink>
           </div>
         </div>
-        <MobileMenuButton className="md:hidden inline-flex h-8 w-8 items-center justify-center rounded-lg bg-claude-bg-300 text-claude-text-300" />
+        <MobileMenuButton className="bg-claude-bg-300 text-claude-text-300 inline-flex h-8 w-8 items-center justify-center rounded-lg md:hidden" />
       </div>
     </div>
   </nav>
@@ -1261,7 +1323,8 @@ const ExampleNavBar = () => (
 ### Theme Not Applying Correctly
 
 **Problem**: Components don't use the correct theme colors.
-**Solution**: 
+**Solution**:
+
 - Ensure you've set the `data-theme` attribute on a parent element
 - Check that you're using the theme-specific color classes (e.g., `text-claude-text-200` not just `text-gray-800`)
 - Verify CSS imports are correct and not being overridden
@@ -1270,6 +1333,7 @@ const ExampleNavBar = () => (
 
 **Problem**: Components look different across pages or don't match the design.
 **Solution**:
+
 - Use the pre-built components from our component library instead of building from scratch
 - Follow the class naming order convention (layout → typography → colors → states)
 - Check spacing using the defined spacing scale
@@ -1278,6 +1342,7 @@ const ExampleNavBar = () => (
 
 **Problem**: Layout breaks at certain screen sizes.
 **Solution**:
+
 - Use the defined breakpoints (`sm`, `md`, `lg`, `xl`) consistently
 - Test at all breakpoints during development
 - Prefer flex and grid layouts with relative units over fixed widths

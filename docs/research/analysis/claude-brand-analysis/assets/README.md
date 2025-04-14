@@ -18,7 +18,8 @@ Please use the following naming convention for files:
 Example: `2024-04-13_chat-interface_main-view.png`
 
 ## Notes
+
 - Include both light and dark mode examples where applicable
 - Capture different states of interactive elements
 - Document any responsive breakpoints observed
-- Note any special animations or transitions 
+- Note any special animations or transitions

@@ -5,6 +5,7 @@ This document outlines the current structure of the Claude Contra project, based
 ## Project Overview
 
 Claude Contra is a documentation and showcase project for creative uses of Claude.ai, built with:
+
 - React, Vite, and TypeScript
 - Tailwind CSS for styling
 - shadcn/ui for UI components
@@ -85,12 +86,14 @@ Claude Contra is a documentation and showcase project for creative uses of Claud
 ### Artifact Organization
 
 There's inconsistency in how artifacts are organized:
+
 - Some artifacts (`counter.tsx`, `binary-compare-swatch.tsx`) are flat files directly in the `/artifacts` directory
 - The `timer` artifact has its own directory with version subdirectories (v1, v2)
 
 ### Component Organization
 
 All components are in the `/components` directory:
+
 - UI components from shadcn are in `/components/ui`
 - Navigation components have a naming convention (`nav-*`)
 - No clear separation between layout and feature components
@@ -111,6 +114,7 @@ All components are in the `/components` directory:
 ## Current Routing Approach
 
 The routing is defined in `main.tsx` and uses React Router:
+
 - Routes are created dynamically based on artifact files
 - Artifacts are loaded using dynamic imports
 - There's a breadcrumb navigation component for showing the current location
@@ -124,6 +128,7 @@ The routing is defined in `main.tsx` and uses React Router:
 ## Current Artifact Loading Pattern
 
 Artifacts are discovered and loaded dynamically:
+
 1. Files are discovered using `import.meta.glob`
 2. Artifacts are grouped by name and version
 3. Routes are generated for each artifact version
@@ -132,6 +137,7 @@ Artifacts are discovered and loaded dynamically:
 ## Findings from Code Examination
 
 ### Main.tsx
+
 - Contains page components (`RootWelcomePage`, `ArtifactsWelcomePage`, etc.) directly in the file
 - Dynamically imports and loads artifacts using Vite's glob imports
 - Handles artifact organization by parsing filenames and paths
@@ -141,6 +147,7 @@ Artifacts are discovered and loaded dynamically:
 - Uses React.lazy for code splitting and lazy loading of artifacts
 
 ### ArtifactContext.tsx
+
 - Provides state management for artifacts using React Context
 - Implements a reducer pattern for updating artifact state
 - Provides utility hooks for artifacts:
@@ -150,6 +157,7 @@ Artifacts are discovered and loaded dynamically:
 - Includes a confirmation dialog component
 
 ### App-sidebar.tsx
+
 - Implements the main navigation sidebar
 - Reads artifact metadata from the global window object
 - Organizes artifacts into favorites for quick access
@@ -162,6 +170,7 @@ Artifacts are discovered and loaded dynamically:
 - Uses Lucide React icons for navigation items
 
 ### Artifact Implementation Patterns
+
 - Artifacts are self-contained components (either single files or versioned directories)
 - They use shadcn/ui components for UI elements
 - Some artifacts use the ArtifactContext for state management
@@ -169,13 +178,16 @@ Artifacts are discovered and loaded dynamically:
 - Some artifacts (like timer/v1) intentionally contain errors for testing the error boundary
 
 ### Detailed Artifact Analysis
+
 - **counter.tsx**: A simple counter component that uses React's useState hook
+
   - Uses shadcn/ui Button component
   - Implements increment/decrement functionality
   - Does not use ArtifactContext for state management
   - Styled directly with Tailwind CSS
 
 - **binary-compare-swatch.tsx**: A complex visualization tool
+
   - Uses canvas for rendering
   - Implements multiple interfaces for type safety
   - Uses React hooks (useState, useRef, useEffect, useMemo)
@@ -189,6 +201,7 @@ Artifacts are discovered and loaded dynamically:
   - Shows how to maintain state between renders
 
 ### File Naming and Structure Inconsistencies
+
 - Flat files use a descriptive name directly (`counter.tsx`)
 - Versioned artifacts use a directory structure with index.tsx files
 - Some component names follow PascalCase (`ArtifactErrorBoundary.tsx`)
@@ -196,8 +209,9 @@ Artifacts are discovered and loaded dynamically:
 - File organization lacks consistent patterns for similar components
 
 ### Migration Considerations
+
 - The inconsistent artifact organization needs standardization
 - Page components embedded in main.tsx should be extracted
 - Global types need a dedicated directory
 - Component categories should be clearly separated
-- Artifact import strategy should be maintained but better organized 
+- Artifact import strategy should be maintained but better organized

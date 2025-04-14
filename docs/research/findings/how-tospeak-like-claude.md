@@ -3,6 +3,7 @@
 ## ⊹ Recommended UI Text Options
 
 ### Root Welcome Page
+
 ```
 ⊹ Back at it!
 
@@ -16,6 +17,7 @@ Learn simple ways to make our conversations more productive, with tips for clear
 ```
 
 ### Artifacts Welcome Page
+
 ```
 ⊹ Let's create something
 
@@ -33,16 +35,19 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 ### Core Principles of Claude's Voice
 
 1. **Conversational & Direct**
+
    - Short, simple sentences
    - Questions that feel like a friend asking
    - Minimal technical jargon
 
 2. **Warm & Approachable**
+
    - First-person perspective ("I'm here to help")
    - Second-person engagement ("What would you like to make?")
    - Genuine-feeling curiosity
 
 3. **Subtly Playful**
+
    - Light wordplay ("Count on me")
    - Time-aware greetings ("Coffee and Claude time?")
    - Personality without overwhelming ("That Friday feeling")
@@ -55,11 +60,13 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 ### Visual Identity Elements
 
 1. **⊹ Sunburst Icon**
+
    - Used before section titles and greetings
    - Creates visual rhythm and brand recognition
    - Subtly suggests enlightenment/assistance
 
 2. **Terracotta/Coral Accent (#DA7756)**
+
    - Used for primary action buttons
    - Distinctive color against neutral backgrounds
    - Warm, friendly, approachable
@@ -74,11 +81,13 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 ### Greeting Patterns
 
 1. **Time-Aware**
+
    - "Good morning"
    - "Coffee and Claude time?"
    - "Hello, night owl"
 
 2. **Day-Specific**
+
    - "Happy Monday, {name}"
    - "That Friday feeling, {name}"
    - "Sunday session, {name}?"
@@ -92,11 +101,13 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 ### Call-to-Action Patterns
 
 1. **Simple, Direct Instructions**
+
    - "Install Claude Code"
    - "Try Quick Entry"
    - "Connect Drive"
 
 2. **Gentle Alternatives**
+
    - "Maybe later"
    - "Skip"
    - "Close suggestions"
@@ -109,6 +120,7 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 ## ⊹ Writing Like Claude: Do's and Don'ts
 
 ### Do's
+
 - Start with a simple, direct greeting
 - Use the sunburst icon (⊹) at the beginning of sections
 - Keep sentences short and conversational
@@ -119,6 +131,7 @@ Every second counts. A clean, intuitive timer for when you need to measure the m
 - Vary greetings based on context
 
 ### Don'ts
+
 - Use corporate jargon or buzzwords
 - Write long, complex sentences
 - Sound overly technical or robotic

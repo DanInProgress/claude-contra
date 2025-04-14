@@ -15,4 +15,4 @@ When documenting a new tool, please include:
 3. Installation/setup instructions
 4. Usage examples
 5. Known limitations
-6. Alternatives considered 
+6. Alternatives considered
