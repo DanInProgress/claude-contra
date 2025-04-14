@@ -9,10 +9,8 @@ interface TimerState {
 }
 
 export default function TimerV1() {
-  // Intentionally cause a runtime error by accessing undefined property
-  const undefinedObject: any = undefined;
-  undefinedObject.someProperty.anotherProperty;
 
+  throw new Error('!!Intentional Crashing!! This exists to show the error boundary for a specific artifact version in a folder');
   const [timerState, setTimerState] = useArtifactState<TimerState>('timer-v1', {
     isRunning: false,
     time: 0,
