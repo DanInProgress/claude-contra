@@ -1,19 +1,24 @@
-import { useArtifactState } from '@/lib/ArtifactContext';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 export default function Counter() {
-  const [count, setCount] = useArtifactState('counter', 0);
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      <div className="rounded-lg bg-white p-8 shadow-md">
-        <h1 className="mb-4 text-2xl font-bold">Counter Artifact</h1>
-        <p className="mb-4 text-xl">Count: {count}</p>
-        <div className="flex gap-4">
-          <Button variant="destructive" onClick={() => setCount(count - 1)}>
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-background p-6 font-primary">
+      <div className="rounded-lg border border-border bg-card p-8 shadow-sm w-full max-w-md">
+        <h1 className="text-xl font-medium text-foreground mb-4">Simple Counter</h1>
+        <p className="text-center text-4xl font-semibold text-foreground mb-6">{count}</p>
+        <div className="flex gap-4 justify-center">
+          <Button
+            onClick={() => setCount(count - 1)}
+            variant="outline"
+          >
             Decrement
           </Button>
-          <Button variant="default" onClick={() => setCount(count + 1)}>
+          <Button
+            onClick={() => setCount(count + 1)}
+          >
             Increment
           </Button>
         </div>

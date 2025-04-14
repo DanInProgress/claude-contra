@@ -1,5 +1,10 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Button } from './ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink
+} from './ui/navigation-menu';
 
 const artifacts = [
   { name: 'Timer', path: '/timer', version: 'v1' },
@@ -25,27 +30,35 @@ export function ArtifactNav() {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const handleNavigate = (path: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(path);
+  };
+
   return (
-    <nav className="bg-background border-border fixed top-0 right-0 left-0 z-50 border-b p-4">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-wrap items-center gap-4">
-          {Object.entries(artifactGroups).map(([name, versions]) => (
-            <div key={name} className="flex items-center gap-1">
-              {versions.map(({ path, version }) => (
-                <Button
-                  key={path}
-                  variant={currentPath === path ? 'default' : 'ghost'}
-                  onClick={() => navigate(path)}
-                  size="sm"
-                >
-                  {name}
-                  <span className="ml-1 text-xs opacity-60">{version}</span>
-                </Button>
-              ))}
-            </div>
-          ))}
-        </div>
+    <div className="bg-background border-border fixed top-0 right-0 left-0 z-50 border-b">
+      <div className="mx-auto max-w-7xl px-4 py-2">
+        <NavigationMenu>
+          <NavigationMenuList>
+            {Object.entries(artifactGroups).map(([name, versions]) => (
+              <NavigationMenuItem key={name} className="flex items-center gap-1">
+                {versions.map(({ path, version }) => (
+                  <NavigationMenuLink 
+                    key={path}
+                    href={path}
+                    onClick={handleNavigate(path)}
+                    className="px-4 py-2 rounded-md"
+                    data-active={currentPath === path}
+                  >
+                    {name}
+                    <span className="ml-1 text-xs opacity-60">Try {version}</span>
+                  </NavigationMenuLink>
+                ))}
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
-    </nav>
+    </div>
   );
 }

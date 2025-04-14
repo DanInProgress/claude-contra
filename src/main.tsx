@@ -1,8 +1,34 @@
+// Move these declarations to the top of the file
+// Define the artifact group types
+interface ArtifactVersion {
+  path: string;
+  version: string;
+  importFn: () => Promise<any>;
+}
+
+interface ArtifactGroup {
+  versions: ArtifactVersion[];
+  isVersioned: boolean;
+}
+
+// Extend the Window interface
+declare global {
+  interface Window {
+    artifactGroups: Record<string, ArtifactGroup>;
+  }
+}
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Link, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
 import { ArtifactProvider } from './lib/ArtifactContext';
+import { Skeleton } from './components/ui/skeleton';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from './components/ui/breadcrumb';
+import { Toaster } from './components/ui/sonner';
+import { SidebarProvider, SidebarInset } from './components/ui/sidebar';
+import { AppSidebar } from './components/app-sidebar';
 import './index.css';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 
 // Import all artifact files
 const versionedArtifacts = import.meta.glob('./artifacts/**/index.tsx', { eager: false });
@@ -61,87 +87,117 @@ const artifactGroups = Object.entries({
   >
 );
 
-function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
-  const location = useLocation();
-  const isActive = location.pathname === to;
+// Make artifactGroups available globally for the sidebar
+if (typeof window !== 'undefined') {
+  window.artifactGroups = artifactGroups;
+}
 
+// Breadcrumb navigation component
+function BreadcrumbNavigation() {
+  const location = useLocation();
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  
+  // Only show breadcrumbs if we're not on the home page
+  if (pathSegments.length === 0) return null;
+  
+  // Generate breadcrumb items from path segments
   return (
-    <Link
-      to={to}
-      className={`inline-flex items-center rounded-md px-3 py-2 text-sm font-medium ${
-        isActive
-          ? 'bg-gray-100 text-gray-900'
-          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-      }`}
-    >
-      {children}
-    </Link>
+    <Breadcrumb className="mb-6">
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      
+      {pathSegments.map((segment, index) => {
+        // Skip rendering "v1", "v2" etc. as separate breadcrumb items
+        if (segment.startsWith('v') && !isNaN(parseInt(segment.substring(1)))) {
+          return null;
+        }
+        
+        const isLast = index === pathSegments.length - 1 || 
+          (index === pathSegments.length - 2 && pathSegments[index + 1].startsWith('v'));
+        
+        // Build the href by joining segments up to the current one
+        const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
+        
+        // Capitalize the segment and replace hyphens with spaces
+        const displayText = segment.charAt(0).toUpperCase() + 
+          segment.slice(1).replace(/-/g, ' ');
+          
+        // Add the version to the last item if applicable
+        let versionText = '';
+        if (isLast && index + 1 < pathSegments.length && pathSegments[index + 1].startsWith('v')) {
+          versionText = ` (${pathSegments[index + 1]})`;
+        }
+        
+        return (
+          <React.Fragment key={segment}>
+            {isLast ? (
+              <BreadcrumbItem>
+                <BreadcrumbPage>{displayText}{versionText}</BreadcrumbPage>
+              </BreadcrumbItem>
+            ) : (
+              <>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={href}>{displayText}</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+              </>
+            )}
+          </React.Fragment>
+        );
+      })}
+    </Breadcrumb>
   );
 }
 
-function VersionDropdown({
-  name,
-  versions,
-}: {
-  name: string;
-  versions: Array<{
-    path: string;
-    version: string;
-  }>;
-}) {
-  const location = useLocation();
-  const [isOpen, setIsOpen] = React.useState(false);
-
+// Artifact loading skeleton component
+function ArtifactLoadingSkeleton() {
   return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`inline-flex items-center rounded-md px-3 py-2 text-sm font-medium ${
-          versions.some((v) => location.pathname === v.path)
-            ? 'bg-gray-100 text-gray-900'
-            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-        }`}
-      >
-        {name}
-        <span className="ml-1 text-xs opacity-60">
-          {versions.find((v) => location.pathname === v.path)?.version || versions[0].version}
-        </span>
-      </button>
-      {isOpen && (
-        <div className="absolute left-0 mt-1 rounded-md bg-white shadow-lg">
-          {versions.map(({ path, version }) => (
-            <NavLink key={path} to={path}>
-              {version}
-            </NavLink>
-          ))}
+    <div className="space-y-4 p-10">
+      <Skeleton className="h-8 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
+      <div className="mt-8 space-y-3">
+        <Skeleton className="h-32 w-full rounded-lg" />
+        <div className="flex gap-2">
+          <Skeleton className="h-10 w-20" />
+          <Skeleton className="h-10 w-20" />
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
 function RootWelcomePage() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <h1 className="mb-8 text-4xl font-bold text-gray-900">Welcome to Claude Contra</h1>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div className="rounded-lg bg-white p-6 shadow">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-900">Artifacts</h2>
-            <p className="mb-4 text-gray-600">
-              A collection of interactive components and experiments.
-            </p>
-            <Link
-              to="/artifacts"
-              className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-            >
-              View Artifacts
-            </Link>
-          </div>
-          <div className="rounded-lg bg-white p-6 shadow">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-900">Coming Soon</h2>
-            <p className="mb-4 text-gray-600">More sections and features will be added here.</p>
-          </div>
+    // Removed min-h-screen and global padding, handled by layout
+    <div className="max-w-7xl">
+      <div className="mb-8">
+        <h2 className="mb-2 text-sm font-medium text-muted-foreground">⊹ Back at it!</h2>
+        {/* Using font-heading for H1 */}
+        <h1 className="mb-10 text-4xl font-bold font-[--font-heading] text-foreground">Hello there. I'm Claude, ready to help with your questions, creative projects, or just a good conversation.</h1>
+      </div>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="rounded-lg border border-border bg-card p-6 shadow-[--shadow]">
+          {/* Using font-heading for H2 */}
+          <h2 className="mb-4 text-2xl font-semibold font-[--font-heading] text-card-foreground">⊹ Creative Space</h2>
+          <p className="mb-6 text-muted-foreground">
+            Check out these interactive examples to see what's possible when we collaborate. What would you like to make today?
+          </p>
+          <Link
+            to="/artifacts"
+            // Applying consistent button styles
+            className="inline-flex items-center rounded-md border border-transparent bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors duration-150 hover:bg-accent/90 active:scale-95"
+          >
+            Let's create
+          </Link>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-6 shadow-[--shadow]">
+           {/* Using font-heading for H2 */}
+          <h2 className="mb-4 text-2xl font-semibold font-[--font-heading] text-card-foreground">⊹ Helpful Hints</h2>
+          <p className="mb-6 text-muted-foreground">
+            Learn simple ways to make our conversations more productive, with tips for clear communication and better results.
+          </p>
         </div>
       </div>
     </div>
@@ -149,109 +205,131 @@ function RootWelcomePage() {
 }
 
 function ArtifactsWelcomePage() {
+  // Group artifacts by category with proper type
+  const categories: Record<string, string[]> = {
+    "Interactive": ["Counter", "Timer"],
+    "Visualization": ["Binary Compare Swatch"],
+    "All": Object.keys(artifactGroups)
+  };
+
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="mb-8 text-3xl font-bold text-gray-900">Artifact Gallery</h1>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Object.entries(artifactGroups).map(([name, { versions }]) => (
-          <div key={name} className="rounded-lg bg-white p-6 shadow">
-            <h2 className="mb-2 text-xl font-semibold text-gray-900">{name}</h2>
-            <div className="space-y-2">
-              {versions.map(({ path, version }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className="block text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  {version}
-                </Link>
-              ))}
+    // Removed global padding, handled by layout
+    <div className="max-w-4xl">
+       {/* Using font-heading for H1 */}
+      <h1 className="mb-8 text-3xl font-bold font-[--font-heading] text-foreground">⊹ Let's create something</h1>
+      <p className="mb-6 text-muted-foreground">Browse these examples to see what's possible when we work together. Each artifact shows a different way I can help.</p>
+      
+      <Tabs defaultValue="All" className="mb-8">
+        <TabsList>
+          {Object.keys(categories).map(category => (
+            <TabsTrigger key={category} value={category}>
+              {category} ({categories[category].length})
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        
+        {Object.entries(categories).map(([category, artifactNames]) => (
+          <TabsContent key={category} value={category} className="mt-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {artifactNames.map(name => {
+                const { versions } = artifactGroups[name];
+                return (
+                  // Applying consistent card styles
+                  <div key={name} className="rounded-lg border border-border bg-card p-6 shadow-[--shadow]">
+                     {/* Using font-heading for H2 */}
+                    <h2 className="mb-3 text-xl font-semibold font-[--font-heading] text-card-foreground">⊹ {name === "Counter" ? "Click Counter" : name === "Timer" ? "Time Tracker" : name}</h2>
+                    <p className="mb-4 text-muted-foreground">
+                      {name === "Counter"
+                        ? "Count on me. A simple yet satisfying way to keep track of numbers that matter to you."
+                        : name === "Timer"
+                          ? "Every second counts. A clean, intuitive timer for when you need to measure the moments."
+                          : `A helpful ${name.toLowerCase()} to make your experience better.`}
+                    </p>
+                    <div className="space-y-2">
+                      {versions.map(({ path, version }) => (
+                        <Link
+                          key={path}
+                          to={path}
+                          className="flex items-center text-sm text-primary hover:text-primary/80 hover:underline font-medium transition-colors duration-150 active:scale-95"
+                        >
+                          <span className="mr-1">→</span> Try {version}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </div>
+          </TabsContent>
         ))}
-      </div>
+      </Tabs>
     </div>
   );
 }
 
-function ArtifactsLayout() {
+// Placeholder components for future routes
+function ResearchPage() { 
+  return <div className="max-w-4xl">
+    <h1 className="mb-8 text-3xl font-bold font-[--font-heading] text-foreground">⊹ Research Findings</h1>
+    <p className="text-muted-foreground">Insights and analysis coming soon. We're carefully reviewing the data!</p>
+  </div>; 
+}
+
+function DemosPage() { 
+  return <div className="max-w-4xl">
+    <h1 className="mb-8 text-3xl font-bold font-[--font-heading] text-foreground">⊹ Cheeky Demos</h1>
+    <p className="text-muted-foreground">Interactive experiments are being calibrated. Prepare for gentle amusement.</p>
+  </div>; 
+}
+
+// Main App component using the new sidebar component
+function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 justify-between">
-            <div className="flex items-center space-x-4">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/artifacts">Artifacts</NavLink>
-            </div>
-            <div className="flex space-x-4">
-              {Object.entries(artifactGroups).map(([name, { versions, isVersioned }]) => (
-                <div key={name} className="flex items-center space-x-1">
-                  {isVersioned ? (
-                    <VersionDropdown name={name} versions={versions} />
-                  ) : (
-                    <NavLink to={versions[0].path}>{name}</NavLink>
-                  )}
-                </div>
-              ))}
-            </div>
+    <BrowserRouter>
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <div className="p-6 lg:p-8">
+            <BreadcrumbNavigation />
+            <Routes>
+              <Route path="/" element={<RootWelcomePage />} />
+              <Route path="/artifacts" element={<ArtifactsWelcomePage />} />
+              <Route path="/research" element={<ResearchPage />} /> 
+              <Route path="/demos" element={<DemosPage />} /> 
+              {/* Dynamically create routes for each artifact version using lazy loading */}
+              {Object.values(artifactGroups)
+                .flatMap(({ versions }) => versions)
+                .map(({ path, importFn }) => {
+                  // Use React.lazy for dynamic imports
+                  const LazyComponent = React.lazy(() => 
+                    importFn().then((module) => ({ default: module.default }))
+                  );
+                  return (
+                    <Route 
+                      key={path} 
+                      path={path} 
+                      element={
+                        // Wrap lazy component in Suspense with improved loading skeleton
+                        <React.Suspense fallback={<ArtifactLoadingSkeleton />}>
+                          <LazyComponent />
+                        </React.Suspense>
+                      }
+                    />
+                  );
+                })}
+            </Routes>
           </div>
-        </div>
-      </nav>
-      <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <Outlet />
-      </main>
-    </div>
+        </SidebarInset>
+      </SidebarProvider>
+    </BrowserRouter>
   );
 }
 
-// Create routes from artifacts
-const artifactRoutes = Object.entries(artifactGroups).flatMap(([_, { versions }]) =>
-  versions.map(({ path, importFn }) => {
-    const LazyComponent = React.lazy(() =>
-      importFn().then((mod) => ({
-        default: (mod as any).default,
-      }))
-    );
-
-    return {
-      path: path.replace('/artifacts/', ''), // Remove /artifacts/ prefix for router
-      element: (
-        <React.Suspense
-          fallback={<div className="flex min-h-screen items-center justify-center">Loading...</div>}
-        >
-          <LazyComponent />
-        </React.Suspense>
-      ),
-    };
-  })
-);
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootWelcomePage />,
-  },
-  {
-    path: '/artifacts',
-    element: <ArtifactsLayout />,
-    children: [
-      {
-        index: true,
-        element: <ArtifactsWelcomePage />,
-      },
-      ...artifactRoutes,
-    ],
-  },
-]);
-
-const rootElement = document.getElementById('root');
-if (!rootElement) throw new Error('Failed to find the root element');
-
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ArtifactProvider>
-      <RouterProvider router={router} />
+      <App />
+      <Toaster />
     </ArtifactProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

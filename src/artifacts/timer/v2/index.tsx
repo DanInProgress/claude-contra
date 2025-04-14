@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-import { useArtifactState } from '@/lib/ArtifactContext';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from 'react';
 
 interface TimerState {
   isRunning: boolean;
@@ -9,7 +7,7 @@ interface TimerState {
 }
 
 export default function TimerV2() {
-  const [timerState, setTimerState] = useArtifactState<TimerState>('timer-v2', {
+  const [timerState, setTimerState] = useState<TimerState>({
     isRunning: false,
     time: 0,
     lastStartTime: null,
@@ -20,23 +18,29 @@ export default function TimerV2() {
 
     if (timerState.isRunning) {
       intervalId = setInterval(() => {
-        setTimerState({
-          ...timerState,
-          time: timerState.time + 1,
-        });
-      }, 1000);
+        if (timerState.lastStartTime) {
+          const elapsedSeconds = Math.floor((Date.now() - timerState.lastStartTime) / 1000);
+          setTimerState(prev => ({ ...prev, time: elapsedSeconds }));
+        }
+      }, 100);
+    } else if (!timerState.isRunning && timerState.time !== 0) {
+      if (intervalId) clearInterval(intervalId);
     }
 
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [timerState.isRunning]);
+  }, [timerState.isRunning, timerState.lastStartTime]);
 
   const toggleTimer = () => {
-    setTimerState({
-      ...timerState,
-      isRunning: !timerState.isRunning,
-      lastStartTime: !timerState.isRunning ? Date.now() : timerState.lastStartTime,
+    setTimerState(prev => {
+      const isRunning = !prev.isRunning;
+      const lastStartTime = isRunning ? Date.now() - prev.time * 1000 : null;
+      return {
+        ...prev,
+        isRunning,
+        lastStartTime: isRunning ? (prev.lastStartTime || Date.now()) : prev.lastStartTime
+      };
     });
   };
 
@@ -48,27 +52,41 @@ export default function TimerV2() {
     });
   };
 
-  const formatTime = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
+  const formatTime = (totalSeconds: number): string => {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      <div className="rounded-lg bg-white p-8 shadow-md">
-        <h1 className="mb-4 text-2xl font-bold">Timer Artifact (v2)</h1>
-        <div className="mb-8 font-mono text-6xl">{formatTime(timerState.time)}</div>
-        <div className="flex gap-4">
-          <Button variant={timerState.isRunning ? 'destructive' : 'default'} onClick={toggleTimer}>
-            {timerState.isRunning ? 'Stop' : 'Start'}
-          </Button>
-          <Button variant="outline" onClick={resetTimer} disabled={timerState.isRunning}>
-            Reset
-          </Button>
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-background p-6 font-primary">
+      <div className="rounded-lg border border-border bg-card p-8 shadow-sm w-full max-w-sm">
+        <h1 className="text-center text-xl font-medium text-foreground mb-4">Timer (v2)</h1>
+        <div className="mb-8 text-center font-mono text-7xl font-medium text-foreground tracking-tight">
+          {formatTime(timerState.time)}
         </div>
-        {timerState.lastStartTime && (
-          <p className="mt-4 text-sm text-gray-500">
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={toggleTimer}
+            className={`inline-flex items-center rounded-md border px-6 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-95 transition-all 
+              ${
+                timerState.isRunning
+                  ? 'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90'
+                  : 'border-transparent bg-primary text-primary-foreground hover:bg-primary/90'
+              }`}
+          >
+            {timerState.isRunning ? 'Stop' : 'Start'}
+          </button>
+          <button
+            onClick={resetTimer}
+            disabled={timerState.isRunning || timerState.time === 0}
+            className="inline-flex items-center rounded-md border border-border bg-card px-6 py-2 text-sm font-medium text-muted-foreground shadow-sm hover:bg-secondary hover:text-secondary-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none"
+          >
+            Reset
+          </button>
+        </div>
+        {timerState.lastStartTime && timerState.isRunning && (
+          <p className="mt-6 text-center text-xs text-muted-foreground">
             Started at: {new Date(timerState.lastStartTime).toLocaleTimeString()}
           </p>
         )}

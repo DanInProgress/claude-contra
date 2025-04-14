@@ -40,7 +40,7 @@ const BinaryComparisonSwatchCard = () => {
     holeDiameter: 0.25, // Standard hole punch diameter in inches
   });
 
-  const [scale, setScale] = useState(50); // Pixels per inch
+  const [scale, setScale] = useState(72); // Default Pixels per inch (common screen resolution)
 
   // Calculate layout dimensions once to avoid duplicate calculations
   const layoutData = useMemo<LayoutData>(() => {
@@ -85,15 +85,22 @@ const BinaryComparisonSwatchCard = () => {
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setDimensions((prev) => ({
-      ...prev,
-      [name]: parseFloat(value),
-    }));
+    // Ensure value is non-negative
+    const parsedValue = Math.max(0, parseFloat(value));
+    if (!isNaN(parsedValue)) {
+        setDimensions((prev) => ({
+            ...prev,
+            [name]: parsedValue,
+        }));
+    }
   };
 
   // Handle scale change
   const handleScaleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setScale(parseFloat(e.target.value));
+    const parsedValue = Math.max(1, parseFloat(e.target.value)); // Ensure scale is at least 1
+    if (!isNaN(parsedValue)) {
+        setScale(parsedValue);
+    }
   };
 
   useEffect(() => {
@@ -399,101 +406,109 @@ const BinaryComparisonSwatchCard = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <h1 className="mb-4 text-2xl font-bold">Binary Comparison Swatch Card Design</h1>
+    // Apply Anthropic background, font, and padding
+    <div className="min-h-[calc(100vh-4rem)] bg-background p-6 font-primary text-foreground">
+      <h1 className="text-2xl font-semibold mb-6">Binary Comparison Swatch Generator</h1>
 
-      <div className="mb-4 flex flex-col gap-4 md:flex-row">
-        <div className="flex flex-col">
-          <label className="mb-1">Page Width (inches)</label>
-          <input
-            type="number"
-            name="width"
-            value={dimensions.width}
-            onChange={handleInputChange}
-            step="0.5"
-            min="5"
-            max="20"
-            className="mb-2 border p-1"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-1">Page Height (inches)</label>
-          <input
-            type="number"
-            name="height"
-            value={dimensions.height}
-            onChange={handleInputChange}
-            step="0.5"
-            min="5"
-            max="30"
-            className="mb-2 border p-1"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-1">Swatch Size (inches)</label>
-          <input
-            type="number"
-            name="swatchSize"
-            value={dimensions.swatchSize}
-            onChange={handleInputChange}
-            step="0.25"
-            min="0.5"
-            max="2"
-            className="mb-2 border p-1"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-1">Hole Diameter (inches)</label>
-          <input
-            type="number"
-            name="holeDiameter"
-            value={dimensions.holeDiameter}
-            onChange={handleInputChange}
-            step="0.0625"
-            min="0.125"
-            max="0.5"
-            className="mb-2 border p-1"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-1">Scale (pixels per inch)</label>
-          <input
-            type="number"
-            name="scale"
-            value={scale}
-            onChange={handleScaleChange}
-            step="5"
-            min="20"
-            max="100"
-            className="mb-2 border p-1"
-          />
+      {/* Controls Card */}
+      <div className="bg-card border border-border rounded-lg shadow-sm p-6 mb-6">
+        <h2 className="text-lg font-medium mb-4">Configuration</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Dimension Inputs */}
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="width" className="block text-sm font-medium text-foreground mb-1">Page Width (in)</label>
+              <input
+                type="number"
+                id="width"
+                name="width"
+                value={dimensions.width}
+                onChange={handleInputChange}
+                min="0" step="0.1"
+                className="w-full px-3 py-2 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-primary text-foreground bg-background"
+              />
+            </div>
+            <div>
+              <label htmlFor="height" className="block text-sm font-medium text-foreground mb-1">Page Height (in)</label>
+              <input
+                type="number"
+                id="height"
+                name="height"
+                value={dimensions.height}
+                onChange={handleInputChange}
+                min="0" step="0.1"
+                className="w-full px-3 py-2 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-primary text-foreground bg-background"
+              />
+            </div>
+          </div>
+
+          {/* Swatch/Hole Inputs */}
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="swatchSize" className="block text-sm font-medium text-foreground mb-1">Swatch Size (in)</label>
+              <input
+                type="number"
+                id="swatchSize"
+                name="swatchSize"
+                value={dimensions.swatchSize}
+                onChange={handleInputChange}
+                min="0.1" step="0.1"
+                className="w-full px-3 py-2 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-primary text-foreground bg-background"
+              />
+            </div>
+            <div>
+              <label htmlFor="holeDiameter" className="block text-sm font-medium text-foreground mb-1">Hole Diameter (in)</label>
+              <input
+                type="number"
+                id="holeDiameter"
+                name="holeDiameter"
+                value={dimensions.holeDiameter}
+                onChange={handleInputChange}
+                min="0" step="0.01"
+                className="w-full px-3 py-2 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-primary text-foreground bg-background"
+              />
+            </div>
+          </div>
+
+          {/* Scale Input */}
+          <div className="space-y-4">
+             <div>
+              <label htmlFor="scale" className="block text-sm font-medium text-foreground mb-1">Scale (pixels/inch)</label>
+              <input
+                type="number"
+                id="scale"
+                name="scale"
+                value={scale}
+                onChange={handleScaleChange}
+                min="1" step="1"
+                className="w-full px-3 py-2 border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-primary font-primary text-foreground bg-background"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="overflow-auto border border-gray-300">
-        <canvas ref={canvasRef} className="bg-white" />
-      </div>
+      {/* Canvas and Layout Data Area */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Canvas Display */}
+        <div className="md:col-span-2 border border-border rounded-lg overflow-hidden bg-white shadow-sm">
+          <canvas ref={canvasRef} />
+        </div>
 
-      <div className="mt-4 max-w-2xl">
-        <h2 className="mb-2 text-xl font-bold">About This Design</h2>
-        <p className="mb-2">
-          This visualization shows a binary comparison swatch card design with diagonal corners. The
-          design places swatches around the perimeter of the page with chamfered (mitered) corners.
-        </p>
-        <p className="mb-2">Key features:</p>
-        <ul className="mb-2 list-disc pl-6">
-          <li>Swatches are positioned along the perimeter of the page</li>
-          <li>Diagonal corner boundaries optimize the layout</li>
-          <li>
-            Hole positions (red circles) are placed at swatch boundaries, at half the swatch height
-            from the edge
-          </li>
-          <li>All holes remain within reach of a standard hole punch (≤1" from edge)</li>
-        </ul>
-        <p>
-          You can adjust the parameters above to see how different page sizes, swatch sizes, and
-          hole diameters affect the layout.
-        </p>
+        {/* Layout Data Display Card */}
+        <div className="bg-card border border-border rounded-lg shadow-sm p-4 md:col-span-1">
+          <h3 className="text-md font-medium mb-3">Layout Details</h3>
+          <ul className="space-y-1.5 text-sm text-muted-foreground">
+            <li>Total Swatches: <span className="font-medium text-foreground">{layoutData.totalSwatches}</span></li>
+            <li>Corner Swatches: <span className="font-medium text-foreground">{layoutData.cornerSwatches}</span></li>
+            <li>Regular Swatches: <span className="font-medium text-foreground">{layoutData.regularSwatches}</span></li>
+            <li className="pt-2">Swatches (Top/Bottom): <span className="font-medium text-foreground">{layoutData.swatchesPerWidthSide}</span></li>
+            <li>Swatch Width (T/B): <span className="font-medium text-foreground">{layoutData.topBottomSwatchWidth.toFixed(3)} in</span></li>
+            <li className="pt-2">Swatches (Left/Right): <span className="font-medium text-foreground">{layoutData.swatchesPerHeightSide}</span></li>
+            <li>Swatch Height (L/R): <span className="font-medium text-foreground">{layoutData.leftRightSwatchWidth.toFixed(3)} in</span></li>
+            <li className="pt-2">Usable Swatch Width: <span className="font-medium text-foreground">{layoutData.usableWidth.toFixed(3)} in ({layoutData.usablePercentage.toFixed(1)}%)</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   );
