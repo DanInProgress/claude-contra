@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface TimerState {
   isRunning: boolean;
@@ -31,7 +31,6 @@ export default function TimerV2() {
       if (intervalId) clearInterval(intervalId);
     };
   }, [timerState.isRunning, timerState.lastStartTime]);
-
   const toggleTimer = () => {
     setTimerState((prev) => {
       const isRunning = !prev.isRunning;
@@ -39,7 +38,7 @@ export default function TimerV2() {
       return {
         ...prev,
         isRunning,
-        lastStartTime: isRunning ? prev.lastStartTime || Date.now() : prev.lastStartTime,
+        lastStartTime,
       };
     });
   };

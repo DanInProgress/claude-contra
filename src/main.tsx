@@ -1,6 +1,6 @@
 // Move these declarations to the top of the file
 // Define the artifact group types
-import { ArtifactGroup, ArtifactVersion } from '@/types/artifacts';
+import { ArtifactGroup } from '@/types/artifacts';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

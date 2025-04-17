@@ -3,4 +3,8 @@ description:
 globs: 
 alwaysApply: false
 ---
- 
+# Tailwind 4 Rules
+
+- All configuration is done through CSS files using the `@theme` directive
+- No separate config files (`.js`, `.mjs`, `.ts`, etc.) are used
+- Theme configuration should be in the main CSS file (e.g., `src/index.css`) 

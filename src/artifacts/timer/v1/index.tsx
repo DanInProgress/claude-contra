@@ -56,6 +56,13 @@ export default function TimerV1() {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const formatStartTime = (timestamp: number | null): string | null => {
+    if (timestamp === null) return null;
+    return new Date(timestamp).toLocaleTimeString();
+  };
+
+  const lastStartTime = timerState.lastStartTime;
+  const formattedStartTime = formatStartTime(lastStartTime);
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
       <div className="rounded-lg bg-white p-8 shadow-md">
@@ -69,9 +76,9 @@ export default function TimerV1() {
             Reset
           </Button>
         </div>
-        {timerState.lastStartTime && (
+        {formattedStartTime !== null && (
           <p className="mt-4 text-sm text-gray-500">
-            Started at: {new Date(timerState.lastStartTime).toLocaleTimeString()}
+            Started at: {formattedStartTime}
           </p>
         )}
       </div>

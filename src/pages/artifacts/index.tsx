@@ -1,18 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-// Define the artifact group types
-interface ArtifactVersion {
-  path: string;
-  version: string;
-  importFn: () => Promise<any>;
-}
-
-interface ArtifactGroup {
-  versions: ArtifactVersion[];
-  isVersioned: boolean;
-}
-
 export function ArtifactsPage() {
   // Get artifact groups from the global window object
   const artifactGroups = window.artifactGroups || {};

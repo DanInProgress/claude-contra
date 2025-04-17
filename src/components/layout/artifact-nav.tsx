@@ -4,7 +4,7 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-} from './ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
 
 const artifacts = [
   { name: 'Timer', path: '/timer', version: 'v1' },

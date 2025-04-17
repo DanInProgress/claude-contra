@@ -1,6 +1,62 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+description: React best practices and patterns for modern web applications
+globs: **/*.tsx, **/*.jsx
 ---
- 
+
+# React Best Practices
+
+## Component Structure
+- Use functional components
+- Implement proper prop types
+- Use proper state management
+- Keep components focused
+- Implement proper composition
+- Use proper component hierarchy
+
+## Hooks
+- Follow rules of hooks
+- Use proper dependency arrays
+- Implement custom hooks
+- Use proper hook composition
+- Keep hooks focused
+- Document hook behavior
+
+## State Management
+- Use proper state initialization
+- Implement proper state updates
+- Use proper state lifting
+- Implement proper context usage
+- Use proper state persistence
+- Keep state minimal
+
+## Performance
+- Use proper memoization
+- Implement proper lazy loading
+- Use proper code splitting
+- Implement proper virtualization
+- Use proper event handling
+- Optimize renders
+
+## Testing
+- Write proper unit tests
+- Implement proper integration tests
+- Use proper test utilities
+- Implement proper test coverage
+- Use proper test patterns
+- Keep tests maintainable
+
+## Accessibility
+- Use proper ARIA attributes
+- Implement proper keyboard navigation
+- Use proper focus management
+- Implement proper screen reader support
+- Use proper semantic HTML
+- Keep accessibility in mind
+
+## Best Practices
+- Follow component patterns
+- Implement proper error boundaries
+- Use proper prop drilling
+- Implement proper context usage
+- Use proper lifecycle methods
+- Keep code maintainable 
