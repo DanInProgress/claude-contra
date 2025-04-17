@@ -1,6 +1,38 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+description: Import organization and structure guidelines
+globs: **/*.ts, **/*.tsx, **/*.js, **/*.jsx
 ---
- 
+
+# Import Best Practices
+
+## Import Order
+- Built-in modules first
+- External dependencies second
+- Internal modules third
+- Parent directory imports fourth
+- Sibling imports fifth
+- Index imports last
+
+## Import Structure
+- Use proper import aliases
+- Implement proper barrel files
+- Use proper import grouping
+- Implement proper import sorting
+- Use proper import comments
+- Keep imports organized
+
+## Module Organization
+- Use proper module boundaries
+- Implement proper module exports
+- Use proper module imports
+- Implement proper module structure
+- Use proper module naming
+- Keep modules focused
+
+## Best Practices
+- Use proper import paths
+- Implement proper import resolution
+- Use proper import statements
+- Implement proper import optimization
+- Use proper import documentation
+- Keep imports clean 

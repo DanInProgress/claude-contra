@@ -15,4 +15,4 @@ When documenting a new finding, please include:
 3. Impact/importance
 4. Supporting evidence
 5. Related analyses
-6. Next steps 
+6. Next steps

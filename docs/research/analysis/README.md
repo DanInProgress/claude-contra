@@ -15,4 +15,4 @@ When documenting a new analysis, please follow this structure:
 3. Findings
 4. Conclusions
 5. References
-6. Next Steps 
+6. Next Steps

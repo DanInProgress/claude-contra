@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { toast } from 'sonner';
 
 type State = Record<string, any>;
 type Action = { type: 'SET_STATE'; artifactId: string; state: any };
@@ -6,6 +7,10 @@ type Action = { type: 'SET_STATE'; artifactId: string; state: any };
 const ArtifactContext = createContext<{
   state: State;
   setState: (artifactId: string, state: any) => void;
+  notify: (
+    message: string,
+    options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }
+  ) => void;
 } | null>(null);
 
 function artifactReducer(state: State, action: Action): State {
@@ -27,8 +32,32 @@ export function ArtifactProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'SET_STATE', artifactId, state: newState });
   };
 
+  const notify = (
+    message: string,
+    options?: { type?: 'default' | 'success' | 'error' | 'info' | 'warning'; description?: string }
+  ) => {
+    switch (options?.type) {
+      case 'success':
+        toast.success(message, { description: options.description });
+        break;
+      case 'error':
+        toast.error(message, { description: options.description });
+        break;
+      case 'info':
+        toast.info(message, { description: options.description });
+        break;
+      case 'warning':
+        toast.warning(message, { description: options.description });
+        break;
+      default:
+        toast(message, { description: options?.description });
+    }
+  };
+
   return (
-    <ArtifactContext.Provider value={{ state, setState }}>{children}</ArtifactContext.Provider>
+    <ArtifactContext.Provider value={{ state, setState, notify }}>
+      {children}
+    </ArtifactContext.Provider>
   );
 }
 
@@ -42,4 +71,13 @@ export function useArtifactState<T>(artifactId: string, initialState: T): [T, (s
   const setState = (newState: T) => context.setState(artifactId, newState);
 
   return [currentState, setState];
+}
+
+export function useNotify() {
+  const context = useContext(ArtifactContext);
+  if (!context) {
+    throw new Error('useNotify must be used within an ArtifactProvider');
+  }
+
+  return context.notify;
 }

@@ -19,4 +19,4 @@ When adding a new reference, please include:
 3. Date accessed
 4. Relevance to our research
 5. Key takeaways
-6. Link (if applicable) 
+6. Link (if applicable)

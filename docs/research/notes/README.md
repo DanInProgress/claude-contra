@@ -15,4 +15,4 @@ Quick notes and observations as you work. Keep it simple!
 2. Dump your notes, links, and thoughts
 3. Move anything important to the main docs when ready
 
-No need to overthink it - just capture what's useful! 
+No need to overthink it - just capture what's useful!

@@ -28,16 +28,64 @@ pnpm lint
 
 # Preview production build
 pnpm preview
+
+# Add new shadcn/ui component
+pnpm dlx shadcn@latest add [component-name]
 ```
 
 ## 📚 Project Structure
 
-The project is organized to document various experiments and projects that push Claude.ai's capabilities beyond its intended design. Each project will be documented with:
+The project follows a modern structure optimized for Tailwind CSS v4 and shadcn/ui:
 
-- Project description and goals
-- Technical approach
-- Results and findings
-- Code examples and demonstrations
+```
+/src
+  /components
+    /ui                  // shadcn/ui components
+    /layout              // Layout components
+    /nav                 // Navigation-specific components
+    /shared              // Common components used across multiple pages
+
+  /artifacts             // Self-contained experiments
+    /[artifact-name]
+      /v1                // Version 1 implementation
+        index.tsx        // Single-file implementation
+      /v2                // Version 2 implementation (if applicable)
+        index.tsx
+
+  /lib                   // Utilities, hooks, and shared code
+    /utils.ts            // Utility functions
+    /hooks/              // Custom React hooks
+
+  /pages                 // Route components
+    /home
+    /artifacts
+    /research
+    /demos
+
+  /styles                // Global styles and Tailwind configuration
+    /index.css           // Main CSS with @theme directive (Tailwind v4)
+
+  /types                 // TypeScript type definitions
+```
+
+Each artifact is a self-contained component that demonstrates a specific Claude.ai capability, documented with:
+
+- Concise description and goals
+- Technical implementation details
+- Results and sample output
+- Code annotations and documentation
+
+## 🎨 Tailwind CSS v4 Integration
+
+This project uses Tailwind CSS v4 with several modern features:
+
+- CSS-based configuration with `@theme inline` directive (no tailwind.config.js)
+- OKLCH color space for improved color rendering
+- The new `size-*` utility for width/height consistency
+- Native CSS nesting and custom media queries
+- Vite integration with `@tailwindcss/vite` plugin
+
+ShadCN integration is configured via `components.json` with the "new-york" style preset.
 
 ## 🤝 Contributing
 

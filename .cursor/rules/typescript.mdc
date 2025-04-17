@@ -1,6 +1,62 @@
 ---
-description: 
-globs: 
-alwaysApply: false
+description: TypeScript best practices and configuration for the project
+globs: **/*.ts, **/*.tsx, tsconfig.json, tsconfig.*.json
 ---
- 
+
+# TypeScript Best Practices
+
+## Type Safety
+- Enable strict mode
+- Use proper type annotations
+- Avoid any type
+- Use proper type guards
+- Implement proper interfaces
+- Use proper type aliases
+
+## Code Organization
+- Use proper module structure
+- Implement proper exports
+- Use proper imports
+- Keep files focused
+- Use proper namespaces
+- Implement proper barrel files
+
+## Type Definitions
+- Use proper type definitions
+- Implement proper generics
+- Use proper utility types
+- Implement proper mapped types
+- Use proper conditional types
+- Keep type definitions DRY
+
+## Error Handling
+- Use proper error types
+- Implement proper error boundaries
+- Use proper try-catch blocks
+- Implement proper error logging
+- Use proper error messages
+- Handle errors gracefully
+
+## Best Practices
+- Use const over let
+- Remove unused variables
+- Remove unused parameters
+- Use proper naming conventions
+- Implement proper documentation
+- Follow SOLID principles
+
+## React Integration
+- Use proper prop types
+- Implement proper state types
+- Use proper event types
+- Implement proper context types
+- Use proper hook types
+- Keep components typed
+
+## Performance
+- Use proper type inference
+- Implement proper type narrowing
+- Use proper type assertions
+- Implement proper type guards
+- Use proper type predicates
+- Optimize type checking 

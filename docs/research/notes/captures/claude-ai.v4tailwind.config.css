@@ -1,0 +1,324 @@
+/**
+ * Anthropic Claude.ai Tailwind CSS v4 Configuration
+ * 
+ * This configuration defines the design system used across Claude.ai
+ * and related Anthropic products using Tailwind CSS v4's new CSS-based config approach.
+ * It includes theme configurations for both the Claude conversational interface 
+ * and the Console administrative interface.
+ */
+
+/* Import Tailwind CSS v4 */
+@import 'tailwindcss';
+
+/* Theme Configuration */
+@theme {
+  /* Color System for Claude theme */
+
+  /* Primary brand accent colors */
+  --color-claude-main-000: hsl(var(--accent-main-000));
+  --color-claude-main-100: hsl(var(--accent-main-100));
+  --color-claude-main-200: hsl(var(--accent-main-200));
+  --color-claude-main-900: hsl(var(--accent-main-900));
+
+  /* Premium/Pro tier accent colors */
+  --color-claude-pro-000: hsl(var(--accent-pro-000));
+  --color-claude-pro-100: hsl(var(--accent-pro-100));
+  --color-claude-pro-200: hsl(var(--accent-pro-200));
+  --color-claude-pro-900: hsl(var(--accent-pro-900));
+
+  /* Secondary accent colors */
+  --color-claude-secondary-000: hsl(var(--accent-secondary-000));
+  --color-claude-secondary-100: hsl(var(--accent-secondary-100));
+  --color-claude-secondary-200: hsl(var(--accent-secondary-200));
+  --color-claude-secondary-900: hsl(var(--accent-secondary-900));
+
+  /* Background colors - from lightest to darkest */
+  --color-claude-bg-000: hsl(var(--bg-000));
+  --color-claude-bg-100: hsl(var(--bg-100));
+  --color-claude-bg-200: hsl(var(--bg-200));
+  --color-claude-bg-300: hsl(var(--bg-300));
+  --color-claude-bg-400: hsl(var(--bg-400));
+  --color-claude-bg-500: hsl(var(--bg-500));
+
+  /* Border colors - from lightest to darkest */
+  --color-claude-border-100: hsl(var(--border-100));
+  --color-claude-border-200: hsl(var(--border-200));
+  --color-claude-border-300: hsl(var(--border-300));
+  --color-claude-border-400: hsl(var(--border-400));
+
+  /* Error/danger colors */
+  --color-claude-danger-000: hsl(var(--danger-000));
+  --color-claude-danger-100: hsl(var(--danger-100));
+  --color-claude-danger-200: hsl(var(--danger-200));
+  --color-claude-danger-900: hsl(var(--danger-900));
+
+  /* Text on color backgrounds */
+  --color-claude-oncolor-100: hsl(var(--oncolor-100));
+  --color-claude-oncolor-200: hsl(var(--oncolor-200));
+  --color-claude-oncolor-300: hsl(var(--oncolor-300));
+
+  /* Text colors - from lightest to darkest */
+  --color-claude-text-000: hsl(var(--text-000));
+  --color-claude-text-100: hsl(var(--text-100));
+  --color-claude-text-200: hsl(var(--text-200));
+  --color-claude-text-300: hsl(var(--text-300));
+  --color-claude-text-400: hsl(var(--text-400));
+  --color-claude-text-500: hsl(var(--text-500));
+
+  /* Theme-independent colors */
+  --color-claude-white: hsl(var(--always-white));
+  --color-claude-black: hsl(var(--always-black));
+
+  /* Console Theme Colors (administrative interface) */
+  /* Following the same structure as Claude theme for consistency */
+  --color-console-main-000: hsl(var(--accent-main-000));
+  --color-console-main-100: hsl(var(--accent-main-100));
+  --color-console-main-200: hsl(var(--accent-main-200));
+  --color-console-main-900: hsl(var(--accent-main-900));
+
+  --color-console-pro-000: hsl(var(--accent-pro-000));
+  --color-console-pro-100: hsl(var(--accent-pro-100));
+  --color-console-pro-200: hsl(var(--accent-pro-200));
+  --color-console-pro-900: hsl(var(--accent-pro-900));
+
+  --color-console-secondary-000: hsl(var(--accent-secondary-000));
+  --color-console-secondary-100: hsl(var(--accent-secondary-100));
+  --color-console-secondary-200: hsl(var(--accent-secondary-200));
+  --color-console-secondary-900: hsl(var(--accent-secondary-900));
+
+  --color-console-bg-000: hsl(var(--bg-000));
+  --color-console-bg-100: hsl(var(--bg-100));
+  --color-console-bg-200: hsl(var(--bg-200));
+  --color-console-bg-300: hsl(var(--bg-300));
+  --color-console-bg-400: hsl(var(--bg-400));
+  --color-console-bg-500: hsl(var(--bg-500));
+
+  --color-console-border-100: hsl(var(--border-100));
+  --color-console-border-200: hsl(var(--border-200));
+  --color-console-border-300: hsl(var(--border-300));
+  --color-console-border-400: hsl(var(--border-400));
+
+  --color-console-danger-000: hsl(var(--danger-000));
+  --color-console-danger-100: hsl(var(--danger-100));
+  --color-console-danger-200: hsl(var(--danger-200));
+  --color-console-danger-900: hsl(var(--danger-900));
+
+  --color-console-oncolor-100: hsl(var(--oncolor-100));
+  --color-console-oncolor-200: hsl(var(--oncolor-200));
+  --color-console-oncolor-300: hsl(var(--oncolor-300));
+
+  --color-console-text-000: hsl(var(--text-000));
+  --color-console-text-100: hsl(var(--text-100));
+  --color-console-text-200: hsl(var(--text-200));
+  --color-console-text-300: hsl(var(--text-300));
+  --color-console-text-400: hsl(var(--text-400));
+  --color-console-text-500: hsl(var(--text-500));
+
+  /* Utility color values */
+  --color-outline: hsl(var(--accent-secondary-900));
+
+  /* Typography System */
+  --font-copernicus:
+    var(--font-copernicus), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-tiempos: var(--font-tiempos), serif;
+  --font-styrene: var(--font-styrene), sans-serif;
+  --font-dyslexia: var(--font-dyslexia), serif;
+
+  /* Font Sizes */
+  --fontSize-1\.5rem: 1.5rem;
+  --lineHeight-1\.5rem: 2rem;
+  --fontSize-0rem: 0rem;
+  --lineHeight-0rem: 0rem;
+
+  /* Letter Spacing */
+  --letterSpacing-tighter: -0.03em;
+
+  /* Layout & Spacing System */
+  --spacing-3\.5: 0.875rem;
+  --space-1rem: 1rem;
+  --space-0rem: 0rem;
+  --inset--px: -1px;
+
+  /* Width and Height */
+  --width-1\/6: 16.666667%;
+  --width-18px: 18px;
+  --maxWidth-20: 5rem;
+  --maxWidth-none: none;
+  --height-2\/3: 66.666667%;
+  --maxHeight-0: 0;
+  --maxHeight-28: 7rem;
+  --minHeight-0: 0;
+  --minHeight-12: 3rem;
+  --size-0\.25rem: 0.25rem;
+  --size-0\.5rem: 0.5rem;
+  --size-1rem: 1rem;
+
+  /* Grid & Flexbox System */
+  --gridTemplateColumns-max-content-auto: max-content auto;
+  --gridTemplateColumns-20px-1fr: 20px 1fr;
+  --gridTemplateColumns-minmax-0-1fr-auto: minmax(0, 1fr) auto;
+  --gridTemplateColumns-repeat-auto-fill-minmax-120px-1fr: repeat(auto-fill, minmax(120px, 1fr));
+
+  --gridTemplateRows-1fr-auto: 1fr auto;
+  --gridTemplateRows-auto-1fr: auto 1fr;
+
+  --colSpan-10: span 10 / span 10;
+  --rowEnd-2: 2;
+
+  /* Flex Properties */
+  --flexShrink-0: 0;
+  --flexShrink-1: 1;
+  --flexShrink-2: 2;
+  --flexShrink-4: 4;
+  --flexGrow-1: 1;
+  --flexGrow-3: 3;
+  --order-1: 1;
+
+  /* Animation System */
+  --animation-fade: fade 125ms ease-out reverse forwards;
+  --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animation-spin: spin 1s linear infinite;
+  --animation-fade_125ms_ease-out_reverse_forwards: fade 125ms ease-out reverse forwards;
+  --animation-fade_200ms_ease-in_forwards: fade 0.2s ease-in forwards;
+  --animation-fade_250ms_ease-in_forwards: fade 0.25s ease-in forwards;
+  --animation-shimmertext_1\.5s_infinite: shimmertext 1.5s infinite;
+  --animation-slide-down_300ms_ease-out: slide-down 0.3s ease-out;
+  --animation-slide-up_300ms_ease-out: slide-up 0.3s ease-out;
+  --animation-translate-x_100ms_ease-out: translate-x 0.1s ease-out;
+  --animation-translate-x_200ms_cubic-bezier-0\.16-1-0\.3-1_forwards: translate-x 0.2s
+    cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animation-zoom_125ms_ease-out_reverse_forwards: zoom 125ms ease-out reverse forwards;
+  --animation-zoom_250ms_ease-in_forwards: zoom 0.25s ease-in forwards;
+
+  /* Visual Effects */
+  --translate-0: 0px;
+  --translate-0\.5: 0.125rem;
+  --translate-1: 0.25rem;
+  --translate-2: 0.5rem;
+  --translate-1\/4: 25%;
+  --translate--0\.05em: -0.05em;
+  --translate--0\.5px: -0.5px;
+  --translate-px: 1px;
+
+  --rotate-12: 12deg;
+  --rotate-0\.1rad: 0.1rad;
+  --rotate-0deg: 0deg;
+
+  --scale-50: 0.5;
+  --scale-0\.975: 0.975;
+  --scale-1: 1;
+
+  --skew-180: 180deg;
+  --skew-2: 3deg;
+
+  --blur-2px: blur(2px);
+  --blur-8px: blur(8px);
+  --backdropBlur-0: blur(0px);
+
+  /* Border System */
+  --borderWidth-1px: 1px;
+  --ringColor: hsl(var(--accent-secondary-100) / 1);
+  --ringColor-border-200: hsl(var(--border-200) / 0.3);
+
+  /* Shadow System */
+  --shadow-diffused: 0 4px 24px var(--tw-shadow-color);
+  --shadow-0_2px_8px_0_hsl-var--accent-secondary-200-16: 0 2px 8px 0
+    hsl(var(--accent-secondary-200) / 16%);
+  --boxShadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --boxShadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --boxShadowColor-accent-secondary-200: hsl(var(--accent-secondary-200) / 0.1);
+  --boxShadowColor-always-black: hsl(var(--always-black) / 0.05);
+
+  /* UI Enhancement Utilities */
+  --opacity-95: 0.95;
+  --scrollPaddingBottom-1\.5rem: 1.5rem;
+
+  /* Screen Breakpoints */
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+  --screen-2xl: 1536px;
+}
+
+/* Define keyframes for animations */
+@keyframes shimmertext {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    height: var(--radix-accordion-content-height);
+  }
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes translate-x {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Configure custom utilities */
+@utility line-clamp {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Custom variant for dark mode if needed */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme='light'] *) {
+      @slot;
+    }
+  }
+
+  &:is([data-theme='dark'] *) {
+    @slot;
+  }
+}
